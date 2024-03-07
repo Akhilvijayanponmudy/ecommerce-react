@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Header from "../utlis/header";
-import HomeBanner from "../components/Banner";
 import axios from 'axios';
 import baseURL from '../api/apiConfig';
-
+import HomeBanner from "../components/homeBanner/Banner";
+import HomeCategories from "../components/homeCategories/HomeCategories";
+import LatestProducts from "../components/homeLatestProducts/latestProducts"
 function Home() {
     const [data, setData] = useState(null);
 
@@ -23,6 +24,8 @@ function Home() {
         <div>
             <Header />
             <HomeBanner props={data} />
+            <HomeCategories props={data} />
+            <LatestProducts />
         </div>
     );
 }
