@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import Style from "./HomeCategories.module.css";
 import CategoryCard from './CategoryCard'; // Adjust the path based on your file structure
 

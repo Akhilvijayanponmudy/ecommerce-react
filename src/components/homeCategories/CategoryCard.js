@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import Style from "./HomeCategories.module.css";
-import baseURL from '../../api/apiConfig';
 
 const CategoryCard = ({ _id, categoryName, primaryImage }) => {
   return (
