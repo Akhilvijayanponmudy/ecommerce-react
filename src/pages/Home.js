@@ -4,30 +4,45 @@ import axios from 'axios';
 import baseURL from '../api/apiConfig';
 import HomeBanner from "../components/homeBanner/Banner";
 import HomeCategories from "../components/homeCategories/HomeCategories";
-import LatestProducts from "../components/homeLatestProducts/latestProducts"
-function Home() {
-    const [data, setData] = useState(null);
+import LatestProducts from "../components/homeLatestProducts/latestProducts";
 
-    useEffect(() => {
-        // Check if data is already available
-        if (!data) {
-            // Make a GET request to fetch data for the home page from the backend
-            axios.get(baseURL).then(response => {
-                    setData(response.data);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
+function Home() {
+  const [data, setData] = useState(null);
+  const [categories, setCategories] = useState([]); // Separate state for categories
+  const [products, setProducts] = useState([]); // Separate state for products
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(baseURL);
+        setData(response.data); // Store entire response for potential future use
+
+        // Extract categories and products from response (check if they exist)
+        if (response.data && response.data.categoryArr && response.data.productArr) {
+          const { categoryArr, productArr } = response.data;
+          setCategories(categoryArr);
+          setProducts(productArr);
+        } else {
+          console.warn('Data structure might have changed. Missing categoryArr or productArr in response.');
         }
-    }, [data]); // Add data as a dependency
-    return (
-        <div>
-            <Header />
-            <HomeBanner props={data} />
-            <HomeCategories props={data} />
-            <LatestProducts />
-        </div>
-    );
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // Fetch data on component mount
+  }, []); // Empty dependency array to fetch data only once
+
+console.log(categories);
+
+  return (
+    <div>
+      <Header />
+      <HomeBanner />
+      <HomeCategories props={categories} />
+      <LatestProducts />
+    </div>
+  );
 }
 
 export default Home;
