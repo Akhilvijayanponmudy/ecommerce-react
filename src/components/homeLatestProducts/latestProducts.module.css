@@ -50,6 +50,10 @@ img {
     .latestProductWrap .card {
         margin-bottom: 25px;
     }
+
+    .priceWrap{
+        display: flex;
+    }
 }
 
 @media only screen and (min-width: 992px) {

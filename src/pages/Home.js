@@ -7,7 +7,7 @@ import HomeCategories from "../components/homeCategories/HomeCategories";
 import LatestProducts from "../components/homeLatestProducts/latestProducts";
 
 function Home() {
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
   const [categories, setCategories] = useState([]); // Separate state for categories
   const [products, setProducts] = useState([]); // Separate state for products
 
@@ -15,7 +15,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(baseURL);
-        setData(response.data); // Store entire response for potential future use
+        // setData(response.data); // Store entire response for potential future use
 
         // Extract categories and products from response (check if they exist)
         if (response.data && response.data.categoryArr && response.data.productArr) {
@@ -33,14 +33,14 @@ function Home() {
     fetchData(); // Fetch data on component mount
   }, []); // Empty dependency array to fetch data only once
 
-console.log(categories);
+// console.log(products);
 
   return (
     <div>
       <Header />
       <HomeBanner />
       <HomeCategories props={categories} />
-      <LatestProducts />
+      <LatestProducts props={products} />
     </div>
   );
 }
