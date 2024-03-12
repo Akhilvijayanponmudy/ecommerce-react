@@ -44,7 +44,8 @@ const HomeBanner = () => {
     };
 
     return (
-            <Swiper {...swiperOptions}>
+            <Swiper {...swiperOptions} >
+
                 {bannerImages.map((image) => (
                     <SwiperSlide key={image.id}>
                         <div className={styles.imageWrap}>
