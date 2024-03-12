@@ -5,6 +5,8 @@ import baseURL from '../api/apiConfig';
 import HomeBanner from "../components/homeBanner/Banner";
 import HomeCategories from "../components/homeCategories/HomeCategories";
 import LatestProducts from "../components/homeLatestProducts/latestProducts"
+
+
 function Home() {
     const [data, setData] = useState(null);
 
@@ -13,8 +15,8 @@ function Home() {
         if (!data) {
             // Make a GET request to fetch data for the home page from the backend
             axios.get(baseURL).then(response => {
-                    setData(response.data);
-                })
+                setData(response.data);
+            })
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
@@ -26,6 +28,7 @@ function Home() {
             <HomeBanner props={data} />
             <HomeCategories props={data} />
             <LatestProducts />
+           
         </div>
     );
 }
