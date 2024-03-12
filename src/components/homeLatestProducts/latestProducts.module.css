@@ -55,13 +55,10 @@
     padding: 10px 0;
 }
 
-.latestProductWrap {
-    margin-bottom: 10px;
-}
+    .latestProductWrap .card {
+        margin-bottom: 25px;
+    }
 
-.latestProductWrap h2 {
-    padding: 10px 0;
-}
 
 @media only screen and (min-width: 992px) {
     .latestProductWrap h4 {

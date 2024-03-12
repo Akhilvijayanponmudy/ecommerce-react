@@ -13,8 +13,8 @@ const HomeCategories = ({ props }) => {
     }
 
     // Check if props.categoryArr is an array before using map
-    if (!Array.isArray(props.categoryArr)) {
-        console.error("Invalid categoryArr in props:", props.categoryArr);
+    if (!Array.isArray(props)) {
+        console.error("Invalid categoryArr in props:", props);
         return null; // or return an error message, loading indicator, or handle it appropriately
     }
 
@@ -22,7 +22,7 @@ const HomeCategories = ({ props }) => {
         <Container>
             <h2 className={Style.h2}>Product Categories</h2>
             <Row>
-                {props.categoryArr.map(category => (
+                {props.map(category => (
                     <CategoryCard key={category._id} {...category} />
                 ))}
             </Row>
