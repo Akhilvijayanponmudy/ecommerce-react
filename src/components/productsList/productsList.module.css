@@ -1,0 +1,61 @@
+.linkWrap .productWrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.linkWrap {
+    text-decoration: none;
+    color: #000;
+}
+
+.linkWrap .productWrap figure {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+}
+
+.linkWrap .productWrap figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.linkWrap .productWrap .productTitle{
+    font-size: 20px;
+    margin: 0;
+}
+
+.linkWrap .productWrap .PriceWrap {
+    display: flex;
+}
+
+.linkWrap .productWrap .PriceWrap .oldPrice {
+    position: relative;
+    font-size: 12px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+}
+.linkWrap .productWrap .PriceWrap .discountPersantage {
+    font-size: 15px;
+    margin-left: 12px;
+    color: green;
+    
+}
+
+.linkWrap .productWrap .PriceWrap .CurrentPrice {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.linkWrap .productWrap .PriceWrap .oldPrice::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translate(-50%, -50%);
+    height: 1px;
+    background-color: red;
+    width: 100%;
+}

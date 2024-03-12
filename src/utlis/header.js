@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Import useState hook
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styles from './Header.module.css'; // Import styles
 import { Container, Row, Col } from 'react-bootstrap';
@@ -25,11 +25,8 @@ function Header() {
                         <div className={`${styles.menuWrap} ${isMenuActive ? styles.mobMenuActive : ''}`}>
                             <ul className={`${styles.headermenus} mb-0`}>
                                 <li><Link to="/">HOME</Link></li>
-                                <li><a href="/about">EVENTS</a></li>
-                                <li><a href="/about">PRODUCTS</a></li>
+                                <li><Link href="/about">PRODUCTS</Link></li>
                                 <li><Link to="/about">ABOUT US</Link></li>
-                                <li><a href="/about">BLOG</a></li>
-                                <li><a href="/about">PORTFOLIO</a></li>
                                 <li><Link to="/contact">CONTACT US</Link></li>
                             </ul>
                         </div>

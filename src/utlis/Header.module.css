@@ -101,11 +101,14 @@
         left: -100vw;
         top: 65px;
         padding: 50px 0;
-
+        z-index: 999;
         transition: .5s all ease;
     }
 
     header .menuWrap.mobMenuActive {
         left: 0;
+
     }
+
+
 }
