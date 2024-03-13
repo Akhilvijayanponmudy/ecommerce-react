@@ -26,7 +26,7 @@ function Header() {
               <ul className={`${styles.headermenus} mb-0`}>
                 <li><Link to="/">HOME</Link></li>
                 <li><Link to="/products">PRODUCTS</Link></li>
-                <li><Link to="/about">ABOUT US</Link></li>
+                <li><Link to="/Detail">Single</Link></li>
                 <li><Link to="/contact">CONTACT US</Link></li>
               </ul>
             </div>
