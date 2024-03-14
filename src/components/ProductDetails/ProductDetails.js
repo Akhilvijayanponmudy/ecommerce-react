@@ -34,7 +34,7 @@ const ProductDetail = () => {
                         </div>
                     </Col>
                     <Col xs={12} lg={6} className={Style.ProductDetailsWrap}>
-                        <span className={Style.ProductTitle}>Galaxy S24 Ultra</span>
+                        <span className={`${Style.ProductTitle} pb-2`}>Galaxy S24 Ultra</span>
                         <span className={Style.productDescription}>Samsung Galaxy S24 Ultra 5G AI Smartphone (Titanium Gray, 12GB, 512GB Storage) </span>
 
                         <div className={Style.PriceWrap}>
