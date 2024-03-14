@@ -20,7 +20,7 @@ const useProductList = ({ _id, productName,productActualPrice,productCurrentPric
 
         <Col key={_id} xs={12} lg={3} >
 
-            <Link to={'/'} className={Style.linkWrap}>
+            <Link to={`/detail/${_id}`} className={Style.linkWrap}>
 
                 <div className={Style.productWrap}>
                     <figure>

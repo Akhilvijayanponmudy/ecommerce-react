@@ -19,7 +19,7 @@
 .linkWrap .productWrap figure img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .linkWrap .productWrap .productTitle{
     font-size: 20px;

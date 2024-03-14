@@ -33,7 +33,6 @@ function Products() {
 
         fetchData();
     }, []); // Empty dependency array to fetch data only once on component mount
-    console.log(products.products);
 
     // {!isLoading && !error && <ProductsList products={products} />}
     return (
