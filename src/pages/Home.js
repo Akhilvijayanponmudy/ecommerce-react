@@ -16,8 +16,7 @@ function Home() {
     // Check if data is already available
     if (!data) {
       // Make a GET request to fetch data for the home page from the backend
-      axios.get(baseURL)
-        .then(response => {
+      axios.get(baseURL).then(response => {
           // setData(response.data);
           // Extract categories and products from the response and update their respective states
           setCategories(response.data.categoryArr);
