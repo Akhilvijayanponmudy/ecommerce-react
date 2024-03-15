@@ -1,0 +1,60 @@
+.cartSection .cartListWrap figure {
+    width: 150px;
+    height: 100%;
+}
+
+.cartSection .cartListWrap figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cartListWrap, .cartListWrap tr, .cartListWrap th, .cartListWrap td {
+    border: 1px solid #ccc;
+
+}
+
+.cartSection .cartListWrap td {
+    padding: 10px;
+
+}
+
+.cartSection .cartListWrap th {
+    padding: 10px;
+}
+
+.QuantityControl span {
+    padding: 20px;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .cartSection .cartListWrap figure {
+        width: 140px;
+        height: 100%;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+    .cartSection .cartListWrap figure {
+        width: 150px;
+        height: 100%;
+    }
+
+    .cartSection .priceSection {
+        padding: 20px 0;
+        margin: 20px 0;
+        font-size: 24px;
+    }
+    .cartSection .buyBtnsec {
+      margin: 20px 20px 0 0;
+    }
+    .cartSection .buyBtnsec button{
+      margin-right: 20px;
+    }
+  
+
+
+}
