@@ -15,7 +15,7 @@ function AppRouter() {
             <Routes>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/products" element={<Products />} />
-                <Route path="/detail" element={<ProductDetails />} />
+                <Route path="/detail/:id" element={<ProductDetails />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<UserLogin />} />
                 <Route path="/registration" element={<UserRegistration />} />

@@ -82,7 +82,6 @@ function ProductList({ props }) {
     //         link: "/product-6"
     //     },
     // ];
-console.log(props);
     return (
         <Container>
             <h1>ProductsList Component</h1>
