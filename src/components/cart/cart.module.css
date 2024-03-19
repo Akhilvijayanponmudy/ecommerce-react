@@ -1,5 +1,9 @@
+#root {
+    overflow: hidden;
+}
+
 .cartSection .cartListWrap figure {
-    width: 150px;
+    width: 80px;
     height: 100%;
 }
 
@@ -9,24 +13,52 @@
     object-fit: contain;
 }
 
-.cartListWrap, .cartListWrap tr, .cartListWrap th, .cartListWrap td {
+.cartListWrap,
+.cartListWrap tr,
+.cartListWrap th,
+.cartListWrap td {
     border: 1px solid #ccc;
-
 }
 
-.cartSection .cartListWrap td {
-    padding: 10px;
-
-}
-
+.cartSection .cartListWrap td,
 .cartSection .cartListWrap th {
-    padding: 10px;
+    padding: 5px;
+
 }
+
+
 
 .QuantityControl span {
-    padding: 20px;
+    padding: 5px;
 }
 
+.QuantityControl button {
+    padding: 5px;
+}
+
+.cartListWrap tr td span {
+    font-size: 14px;
+}
+
+.cartListWrap thead tr th {
+    font-size: 15px;
+}
+
+.cartListWrap tbody tr td button {
+    padding: 5px;
+}
+
+
+.cartSection .priceSection {
+    margin-top: 20px;
+}
+
+.cartSection .priceSection .buyBtnsec {
+    padding-top: 10px;
+}
+.cartSection .priceSection .buyBtnsec button{
+    margin-right: 10px;
+}
 
 
 @media screen and (min-width: 768px) {
@@ -34,6 +66,24 @@
         width: 140px;
         height: 100%;
     }
+
+    .cartListWrap tr td span {
+        font-size: 16px;
+    }
+
+    .QuantityControl span {
+        padding: 20px;
+    }
+
+
+    .QuantityControl button {
+        padding: 10px;
+    }
+
+    .cartListWrap tbody tr td button {
+        padding: 10px;
+    }
+
 
 }
 
@@ -48,13 +98,29 @@
         margin: 20px 0;
         font-size: 24px;
     }
+
     .cartSection .buyBtnsec {
-      margin: 20px 20px 0 0;
+        margin: 20px 20px 0 0;
     }
-    .cartSection .buyBtnsec button{
-      margin-right: 20px;
+
+    .cartSection .buyBtnsec button {
+        margin-right: 20px;
     }
-  
+
+    .cartListWrap tr td span {
+        font-size: 16px;
+    }
 
 
+    .QuantityControl span {
+        padding: 20px;
+    }
+
+    .QuantityControl button {
+        padding: 10px;
+    }
+
+    .cartListWrap tbody tr td button {
+        padding: 10px;
+    }
 }

@@ -41,46 +41,49 @@ const Cart = () => {
 
 
                     <table className={Style.cartListWrap}>
-                        <tr>
-                            <th>Product</th>
-                            <th>Product Name</th>
-                            <th>Product Quantity</th>
-                            <th>Product Price</th>
-                            <th> </th>
-                        </tr>
+                        <thead>
 
-
-                        {cartItems.map(item => (
-
-                            <tr key={item.id}>
-                                <td>
-                                    <figure><img src={item.img} alt={item.name} /></figure>
-                                </td>
-                                <td>
-                                    <span className={Style.produtName}>{item.name}</span>
-                                </td>
-
-                                <td>
-                                    <div className={Style.QuantityControl}>
-                                        <Button variant="secondary" onClick={() => decrement(item.id)}>-</Button>
-                                        <span className={Style.Count}>{item.quantity}</span>
-                                        <Button variant="secondary" onClick={() => increment(item.id)}>+</Button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span className={Style.ProductPrice}>Rs. {item.price * item.quantity}</span>
-                                </td>
-                                <td>
-                                    <Button variant="danger">Remove</Button>
-
-                                </td>
+                            <tr>
+                                <th>Product</th>
+                                <th>Product Name</th>
+                                <th>Product Quantity</th>
+                                <th>Product Price</th>
+                                <th> </th>
                             </tr>
+                        </thead>
+
+                        <tbody>
+                            {cartItems.map(item => (
+
+                                <tr key={item.id}>
+                                    <td>
+                                        <figure><img src={item.img} alt={item.name} /></figure>
+                                    </td>
+                                    <td>
+                                        <span className={Style.produtName}>{item.name}</span>
+                                    </td>
+
+                                    <td>
+                                        <div className={Style.QuantityControl}>
+                                            <Button variant="secondary" onClick={() => decrement(item.id)}>-</Button>
+                                            <span className={Style.Count}>{item.quantity}</span>
+                                            <Button variant="secondary" onClick={() => increment(item.id)}>+</Button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span className={Style.ProductPrice}>Rs. {item.price * item.quantity}</span>
+                                    </td>
+                                    <td>
+                                        <Button variant="danger">Remove</Button>
+
+                                    </td>
+                                </tr>
 
 
-                        ))}
+                            ))}
 
 
-
+                        </tbody>
 
                     </table>
 

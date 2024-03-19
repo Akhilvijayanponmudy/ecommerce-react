@@ -9,6 +9,8 @@ const UserLoginForm = () => {
     const [responseMessage, setResponseMessage] = useState('');
     const [validationError, setValidationError] = useState('');
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     }
@@ -26,8 +28,30 @@ const UserLoginForm = () => {
         }
 
         try {
-            const response = await axios.post('/api/login', { email, password });
-            setResponseMessage(response.data.message);
+            // const response = await axios.post('http://localhost:5000/login', { email, password });
+            // setResponseMessage(response.data.message);
+
+
+            //********** */ express code starts
+            // res.cookie('jwt', token, { httpOnly: true, secure: true }); // Set HttpOnly and Secure flags (optional)
+            // res.json({ message: 'Login successful', accessToken: token });
+            //*********** */ express code ends
+
+            const accessToken = 'accessTokenGenarated';
+            if (accessToken) {
+                setIsLoggedIn(true);
+            }
+
+            // if (response.data.accessToken) { // Check if access token is in response
+            if (accessToken) { // Check if access token is in response
+                document.cookie = `jwt=${accessToken}; HttpOnly; Secure`;  // Store access token in HttpOnly cookie
+                setIsLoggedIn(true); // Update logged-in state
+            } else {
+                setResponseMessage('Login failed. Access token not received.');
+            }
+
+
+
         } catch (error) {
             console.error('Error:', error);
             setResponseMessage('An error occurred.');
@@ -37,6 +61,8 @@ const UserLoginForm = () => {
     return (
 
         <section className={Style.userloginsection}>
+
+
             <Container className={Style.WidHei}>
                 <div className={Style.formWrap}>
                     <span className={Style.Logintitle}>Login Here</span>
