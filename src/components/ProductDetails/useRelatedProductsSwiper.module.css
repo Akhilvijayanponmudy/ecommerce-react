@@ -1,0 +1,27 @@
+.relatedProductWrap {
+    width: 100%;
+    height: 100px;
+
+}
+
+.relatedswiperWrap {
+    padding-top: 20px;
+}
+
+.relatedswiperWrap .pTitle {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+.relatedswiperWrap .pRate {
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.relatedProductWrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

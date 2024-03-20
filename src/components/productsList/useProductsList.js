@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import baseURL from "../../api/apiConfig";
 const useProductList = ({ _id, productName,productActualPrice,productCurrentPrice, primaryImage}) => {
 
-    console.log(_id);
 
     // Function to calculate discount percentage
     const calculateDiscountPercentage = () => {
@@ -18,7 +17,7 @@ const useProductList = ({ _id, productName,productActualPrice,productCurrentPric
     const imgUrl=baseURL+`uploads/`+primaryImage;
     return (
 
-        <Col key={_id} xs={12} lg={3} >
+        <Col key={_id} xs={12} lg={3} id={_id}>
 
             <Link to={`/detail/${_id}`} className={Style.linkWrap}>
 

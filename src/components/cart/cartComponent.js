@@ -1,106 +1,188 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Style from './cart.module.css'
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Button } from "react-bootstrap";
+import getJWTtoken from "../../contexts/checkJWTexistance";
+import axios from 'axios';
+import baseURL from "../../api/apiConfig";
+import { useNavigate } from 'react-router-dom';
 
-const Cart = () => {
-    const [cartItems, setCartItems] = useState([
-        { id: 1, name: "Galaxy S24 Ultra", img: '/images/product/s24.webp', price: 50000, quantity: 1 },
-        { id: 2, name: "Galaxy Note 10", img: '/images/product/s20.jpg', price: 40000, quantity: 1 },
-        { id: 3, name: "Galaxy A50", img: '/images/product/s22.jpg', price: 30000, quantity: 1 },
-        { id: 4, name: "Galaxy A50", img: '/images/product/s22.jpg', price: 30000, quantity: 1 },
-    ]);
+const Cart = ({ props }) => {
 
-    const increment = (id) => {
-        const updatedCartItems = cartItems.map(item => {
-            if (item.id === id) {
-                return { ...item, quantity: item.quantity + 1 };
+    // const navigate = useNavigate();
+
+
+    // const [cartItems, setCartItems] = useState([
+    //     { id: 1, name: "Galaxy S24 Ultra", img: '/images/product/s24.webp', price: 50000, quantity: 1 },
+    //     { id: 2, name: "Galaxy Note 10", img: '/images/product/s20.jpg', price: 40000, quantity: 1 },
+    //     { id: 3, name: "Galaxy A50", img: '/images/product/s22.jpg', price: 30000, quantity: 1 },
+    //     { id: 4, name: "Galaxy A50", img: '/images/product/s22.jpg', price: 30000, quantity: 1 },
+    // ]);
+
+    // const [cartData, setCartData] = useState([]);
+
+    // useEffect(() => {
+    //     if (props) {
+    //         setCartData(props);
+    //     } else {
+    //         console.error("Cart data not received from pages component");
+    //     }
+    // }, [props]);
+
+
+    const navigate = useNavigate();
+
+    const [cartItems, setCartItems] = useState([]); // State to hold cart items (with quantity)
+
+    const [error, setError] = useState(null); // State for error handling (optional)
+
+
+    const fetchCartData = async () => {
+        try {
+            const accessToken = getJWTtoken();
+            if (!accessToken) {
+                navigate('/login');
+                return;
             }
-            return item;
-        });
-        setCartItems(updatedCartItems);
+
+            const response = await axios.get(`${baseURL}cart`, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
+            setCartItems(response.data);
+        } catch (error) {
+            setError(error); // Handle error if fetching cart data fails
+        }
     };
 
-    const decrement = (id) => {
-        const updatedCartItems = cartItems.map(item => {
-            if (item.id === id && item.quantity > 1) {
-                return { ...item, quantity: item.quantity - 1 };
-            }
-            return item;
-        });
-        setCartItems(updatedCartItems);
-    };
 
+    useEffect(() => {
+        fetchCartData(); // Call the fetchCartData function within useEffect
+    }, [navigate])
+
+
+    const increment = async (id) => {
+        const accessToken = getJWTtoken();
+        if (!accessToken) {
+            navigate('/login');
+        } else {
+            try {
+                const response = await axios.post(`${baseURL}cart/add-to-cart/${id}`,
+                    { quantity: 1, },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    });
+                if (response.data.status == true) {
+                    fetchCartData();
+                } else {
+                    alert('Something Went Wrong')
+                }
+
+                console.log('Added to cart:', response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+    
+
+    const decrement = async (id) => {
+        const accessToken = getJWTtoken();
+        if (!accessToken) {
+            navigate('/login');
+        } else {
+            try {
+                const response = await axios.post(`${baseURL}cart/add-to-cart/${id}`,
+                    { quantity: -1, },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    });
+                if (response.data.status == true) {
+                    fetchCartData();
+                } else {
+                    alert('Something Went Wrong')
+                }
+
+                console.log('Added to cart:', response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
     const getTotalPrice = () => {
         return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
     };
-
     return (
         <section className={Style.cartSection}>
             <Container>
                 <Row>
-
-
                     <table className={Style.cartListWrap}>
-                        <tr>
-                            <th>Product</th>
-                            <th>Product Name</th>
-                            <th>Product Quantity</th>
-                            <th>Product Price</th>
-                            <th> </th>
-                        </tr>
-
-
-                        {cartItems.map(item => (
-
-                            <tr key={item.id}>
-                                <td>
-                                    <figure><img src={item.img} alt={item.name} /></figure>
-                                </td>
-                                <td>
-                                    <span className={Style.produtName}>{item.name}</span>
-                                </td>
-
-                                <td>
-                                    <div className={Style.QuantityControl}>
-                                        <Button variant="secondary" onClick={() => decrement(item.id)}>-</Button>
-                                        <span className={Style.Count}>{item.quantity}</span>
-                                        <Button variant="secondary" onClick={() => increment(item.id)}>+</Button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span className={Style.ProductPrice}>Rs. {item.price * item.quantity}</span>
-                                </td>
-                                <td>
-                                    <Button variant="danger">Remove</Button>
-
-                                </td>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Product Name</th>
+                                <th>Product Quantity</th>
+                                <th>Product Price</th>
+                                <th>Total Price</th>
+                                <th></th>
                             </tr>
-
-
-                        ))}
-
-
-
-
+                        </thead>
+                        <tbody>
+                            {cartItems.length > 0 ? ( // Check for empty cart before rendering
+                                cartItems.map(item => (
+                                    <tr key={item.id}>
+                                        <td>
+                                            <figure><img src={`${baseURL}uploads/${item.img}`} alt={item.name} /></figure>
+                                        </td>
+                                        <td>
+                                            <span className={Style.produtName}>{item.name}</span>
+                                        </td>
+                                        <td>
+                                            <div className={Style.QuantityControl}>
+                                                <Button variant="secondary" onClick={() => decrement(item.id)}>-</Button>
+                                                <span className={Style.Count}>{item.quantity}</span>
+                                                <Button variant="secondary" onClick={() => increment(item.id)}>+</Button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span className={Style.ProductPrice}>Rs. {item.price}</span>
+                                        </td>
+                                        <td>
+                                            <span className={Style.ProductPrice}>Rs. {item.price * item.quantity}</span>
+                                        </td>
+                                        <td>
+                                            <Button variant="danger">Remove</Button>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="5">Your cart is empty.</td>
+                                </tr>
+                            )}
+                        </tbody>
                     </table>
-
                 </Row>
                 <Row>
-
-                </Row>
-                <div className={Style.priceSection}>
-                    Total Price: Rs. {getTotalPrice()}
-
-                    <div className={Style.buyBtnsec}>
-                        <Button variant="success">Update Cart</Button>
-                        <Button variant="primary">Buy</Button>
+                    <div className={Style.priceSection}>
+                        Total Price: Rs. {getTotalPrice()}
+                        <div className={Style.buyBtnsec}>
+                            <Button variant="success">Update Cart</Button>
+                            <Button variant="primary">Buy</Button>
+                        </div>
                     </div>
-                </div>
-
-
+                </Row>
             </Container>
         </section>
+
     );
 };
 
 export default Cart;
+
+
+// test
