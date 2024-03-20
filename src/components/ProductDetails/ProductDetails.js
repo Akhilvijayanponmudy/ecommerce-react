@@ -3,25 +3,28 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Style from './ProductDetails.module.css';
 import { Link } from "react-router-dom";
 import baseURL from "../../api/apiConfig";
+import { useNavigate } from 'react-router-dom';
+import getJWTtoken from "../../contexts/checkJWTexistance";
+import axios from 'axios';
 
 const ProductDetail = ({ props }) => {
   const [currentImage, setCurrentImage] = useState('');
+  const navigate = useNavigate();
 
-  // Check if props is null or undefined and handle gracefully
   if (!props) {
     console.error("Invalid props:", props);
-    return null; // Or return an error message, loading indicator, etc.
+    return null;
   }
 
-  // Check if a variable is an array before using map
   const productDetailsArray = Object.entries(props);
 
-  // Check if props.categoryArr is an array before using map
+  // Check if props.categoryArr  an array before using map
   if (!Array.isArray(productDetailsArray)) {
     console.error("Invalid Product in props:", props);
-    return null; // Or return an error message, loading indicator, etc.
+    return null;
   }
 
+  const productId = productDetailsArray[0][1]._id;
   const productName = productDetailsArray[0][1].productName;
   const primaryImageUr = productDetailsArray[0][1].primaryImage;
   const productDescription = productDetailsArray[0][1].productDescription;
@@ -33,6 +36,40 @@ const ProductDetail = ({ props }) => {
 
   const handleSecondaryImageClick = (imgUrl) => {
     setCurrentImage(baseURL + 'uploads/' + imgUrl); // Construct full path
+  };
+
+
+  const handleAddToCart = async () => {
+    const accessToken = getJWTtoken();
+    if (!accessToken) {
+      navigate('/login');
+    } else {
+      try {
+
+        const response = await axios.post(`${baseURL}cart/add-to-cart/${productId}`,
+          { quantity: 1, },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+
+        if (response.data.status == true) {
+          navigate('/cart')
+        } else {
+          alert('Something Went Wrong')
+        }
+
+        console.log('Added to cart:', response.data);
+
+
+      } catch (error) {
+        navigate('/login')
+
+        console.log(error);
+      }
+
+    }
   };
 
   return (
@@ -72,7 +109,9 @@ const ProductDetail = ({ props }) => {
             </div>
 
             <div className={Style.productBtnWrap}>
-              <Link to="/" className={Style.cartBtn}>Add to Cart</Link>
+
+              {/* <Link to={`/add-to-cart/${productId}`} className={Style.cartBtn}>Add to Cart</Link> */}
+              <button className={Style.cartBtn} onClick={handleAddToCart}>Add to Cart</button>
               <Link to="/" className={Style.buyBtn}>Buy Now</Link>
             </div>
           </Col>

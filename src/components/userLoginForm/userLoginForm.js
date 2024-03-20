@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Form, Button, Container } from 'react-bootstrap';
 import axios from 'axios';
 import Style from './userLogin.module.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const UserLoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
     const [validationError, setValidationError] = useState('');
+    const navigate = useNavigate();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -18,6 +19,15 @@ const UserLoginForm = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
+
+
+    const storeAccessToken = (JWTtoken) => {
+        localStorage.setItem('accessToken', JWTtoken);
+    };
+
+    // const getAccessToken = () => {
+    //     return localStorage.getItem('accessToken');
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,29 +38,17 @@ const UserLoginForm = () => {
         }
 
         try {
-            // const response = await axios.post('http://localhost:5000/login', { email, password });
-            // setResponseMessage(response.data.message);
+            const response = await axios.post('http://localhost:5000/login', { email, password });
+            setResponseMessage(response.data.message);
+            const JWTtoken = response.data.token;
 
-
-            //********** */ express code starts
-            // res.cookie('jwt', token, { httpOnly: true, secure: true }); // Set HttpOnly and Secure flags (optional)
-            // res.json({ message: 'Login successful', accessToken: token });
-            //*********** */ express code ends
-
-            const accessToken = 'accessTokenGenarated';
-            if (accessToken) {
-                setIsLoggedIn(true);
-            }
-
-            // if (response.data.accessToken) { // Check if access token is in response
-            if (accessToken) { // Check if access token is in response
-                document.cookie = `jwt=${accessToken}; HttpOnly; Secure`;  // Store access token in HttpOnly cookie
-                setIsLoggedIn(true); // Update logged-in state
+            if (JWTtoken) {
+                storeAccessToken(JWTtoken);
+                // setIsLoggedIn(true);
+                navigate('/');
             } else {
                 setResponseMessage('Login failed. Access token not received.');
             }
-
-
 
         } catch (error) {
             console.error('Error:', error);

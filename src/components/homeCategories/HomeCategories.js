@@ -4,18 +4,14 @@ import Style from "./HomeCategories.module.css";
 import CategoryCard from './CategoryCard'; // Adjust the path based on your file structure
 
 const HomeCategories = ({ props }) => {
-    // console.log(props);
 
-    // Check if props is null or undefined
     if (!props) {
         console.error("Invalid props:", props);
-        return null; // or return an error message, loading indicator, or handle it appropriately
+        return null;
     }
-
-    // Check if props.categoryArr is an array before using map
     if (!Array.isArray(props)) {
         console.error("Invalid categoryArr in props:", props);
-        return null; // or return an error message, loading indicator, or handle it appropriately
+        return null; 
     }
 
     return (
