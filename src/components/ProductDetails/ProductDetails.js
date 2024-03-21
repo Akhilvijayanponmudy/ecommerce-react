@@ -24,6 +24,9 @@ const ProductDetail = ({ props }) => {
     return null;
   }
 
+
+
+
   const productId = productDetailsArray[0][1]._id;
   const productName = productDetailsArray[0][1].productName;
   const primaryImageUr = productDetailsArray[0][1].primaryImage;
@@ -45,7 +48,6 @@ const ProductDetail = ({ props }) => {
       navigate('/login');
     } else {
       try {
-
         const response = await axios.post(`${baseURL}cart/add-to-cart/${productId}`,
           { quantity: 1, },
           {
@@ -54,7 +56,7 @@ const ProductDetail = ({ props }) => {
             },
           });
 
-        if (response.data.status == true) {
+        if (response.data.status === true) {
           navigate('/cart')
         } else {
           alert('Something Went Wrong')
@@ -65,12 +67,23 @@ const ProductDetail = ({ props }) => {
 
       } catch (error) {
         navigate('/login')
-
         console.log(error);
       }
 
     }
   };
+
+  // const productBuy = async () => {
+  //   // if (productId) {
+  //   //   try {
+  //   //     const res
+
+  //   //   } catch (error) {
+  //   //     console.log(error);
+  //   //   }
+  //   // }
+  // }
+
 
   return (
     <section className={Style.productDetailSection}>
@@ -112,7 +125,7 @@ const ProductDetail = ({ props }) => {
 
               {/* <Link to={`/add-to-cart/${productId}`} className={Style.cartBtn}>Add to Cart</Link> */}
               <button className={Style.cartBtn} onClick={handleAddToCart}>Add to Cart</button>
-              <Link to="/" className={Style.buyBtn}>Buy Now</Link>
+              <Link to={`/buy/${productId}`} className={Style.buyBtn} >Buy Now</Link>
             </div>
           </Col>
         </Row>

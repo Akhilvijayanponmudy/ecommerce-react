@@ -24,10 +24,11 @@ function Header() {
           <Col xs={12} lg={8} className={styles.noGutters}>
             <div className={`${styles.menuWrap} ${isMenuActive ? styles.mobMenuActive : ''}`}>
               <ul className={`${styles.headermenus} mb-0`}>
-                <li><Link to="/">HOME</Link></li>
-                <li><Link to="/products">PRODUCTS</Link></li>
-                <li><Link to="/Detail">Single</Link></li>
-                <li><Link to="/contact">CONTACT US</Link></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/products">Products</Link></li>
+                <li><Link to="/cart">cart</Link></li>
+                <li><Link to="/account"><img src="/images/login.png" alt="Account" /></Link></li>
+
               </ul>
             </div>
           </Col>
