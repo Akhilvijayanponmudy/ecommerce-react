@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import Style from './cart.module.css'
 import { Container, Row, Button } from "react-bootstrap";
 import getJWTtoken from "../../contexts/checkJWTexistance";
@@ -6,37 +6,12 @@ import axios from 'axios';
 import baseURL from "../../api/apiConfig";
 import { useNavigate } from 'react-router-dom';
 
-const Cart = ({ props }) => {
-
-    // const navigate = useNavigate();
-
-
-    // const [cartItems, setCartItems] = useState([
-    //     { id: 1, name: "Galaxy S24 Ultra", img: '/images/product/s24.webp', price: 50000, quantity: 1 },
-    //     { id: 2, name: "Galaxy Note 10", img: '/images/product/s20.jpg', price: 40000, quantity: 1 },
-    //     { id: 3, name: "Galaxy A50", img: '/images/product/s22.jpg', price: 30000, quantity: 1 },
-    //     { id: 4, name: "Galaxy A50", img: '/images/product/s22.jpg', price: 30000, quantity: 1 },
-    // ]);
-
-    // const [cartData, setCartData] = useState([]);
-
-    // useEffect(() => {
-    //     if (props) {
-    //         setCartData(props);
-    //     } else {
-    //         console.error("Cart data not received from pages component");
-    //     }
-    // }, [props]);
-
+const Cart = () => {
 
     const navigate = useNavigate();
-
     const [cartItems, setCartItems] = useState([]); // State to hold cart items (with quantity)
 
-    const [error, setError] = useState(null); // State for error handling (optional)
-
-
-    const fetchCartData = async () => {
+    const fetchCartData =useCallback( async () => {
         try {
             const accessToken = getJWTtoken();
             if (!accessToken) {
@@ -51,14 +26,45 @@ const Cart = ({ props }) => {
             });
             setCartItems(response.data);
         } catch (error) {
-            setError(error); // Handle error if fetching cart data fails
+            console.log(error);
+            navigate('/login');
         }
-    };
+    },[navigate]);
 
 
     useEffect(() => {
-        fetchCartData(); // Call the fetchCartData function within useEffect
-    }, [navigate])
+        fetchCartData();
+    }, [fetchCartData]);
+
+
+    const removeItem = async (id) => {
+        if (id) {
+            const accessToken = getJWTtoken();
+            try {
+                const response = await axios.post(`${baseURL}cart/remove-from-cart/${id}`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`
+                        }
+                    });
+                if (response.data.status === true) {
+                    fetchCartData();
+                } else {
+                    alert('Something Went Wrong')
+                }
+
+            } catch (error) {
+                console.log(error);
+                navigate('/login');
+
+            }
+        } else {
+            alert('Something went wrong');
+            navigate('/login');
+
+        }
+    }
 
 
     const increment = async (id) => {
@@ -74,7 +80,7 @@ const Cart = ({ props }) => {
                             Authorization: `Bearer ${accessToken}`,
                         },
                     });
-                if (response.data.status == true) {
+                if (response.data.status === true) {
                     fetchCartData();
                 } else {
                     alert('Something Went Wrong')
@@ -83,10 +89,12 @@ const Cart = ({ props }) => {
                 console.log('Added to cart:', response.data);
             } catch (error) {
                 console.log(error);
+                navigate('/login');
+
             }
         }
     };
-    
+
 
     const decrement = async (id) => {
         const accessToken = getJWTtoken();
@@ -101,7 +109,7 @@ const Cart = ({ props }) => {
                             Authorization: `Bearer ${accessToken}`,
                         },
                     });
-                if (response.data.status == true) {
+                if (response.data.status === true) {
                     fetchCartData();
                 } else {
                     alert('Something Went Wrong')
@@ -155,7 +163,7 @@ const Cart = ({ props }) => {
                                             <span className={Style.ProductPrice}>Rs. {item.price * item.quantity}</span>
                                         </td>
                                         <td>
-                                            <Button variant="danger">Remove</Button>
+                                            <Button variant="danger" onClick={() => removeItem(item.id)}>Remove</Button>
                                         </td>
                                     </tr>
                                 ))
@@ -171,7 +179,6 @@ const Cart = ({ props }) => {
                     <div className={Style.priceSection}>
                         Total Price: Rs. {getTotalPrice()}
                         <div className={Style.buyBtnsec}>
-                            <Button variant="success">Update Cart</Button>
                             <Button variant="primary">Buy</Button>
                         </div>
                     </div>
