@@ -3,9 +3,14 @@ import axios from 'axios';
 import getJWTtoken from '../../contexts/checkJWTexistance';
 import baseURL from '../../api/apiConfig';
 import { useNavigate } from 'react-router-dom';
+import JwtValidateExpiry from '../../contexts/jwtVlidationCheck'
 
 const AddressForm = ({ onSubmit }) => {
-    const navigate=useNavigate();
+
+    const [isSuccessMessage, setIsSuccessMessage] = useState(false);
+
+
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         addressLine1: '',
@@ -24,11 +29,10 @@ const AddressForm = ({ onSubmit }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(formData);
+        // console.log(formData);
         // onSubmit(formData);
         const accessToken = getJWTtoken();
         if (!accessToken) {
-
             navigate('/login');
         } else {
             const response = await axios.post(`${baseURL}account/address/add`,
@@ -39,7 +43,14 @@ const AddressForm = ({ onSubmit }) => {
                     },
                 });
 
-                console.log(response);
+            const validation = JwtValidateExpiry(response);
+            console.log(validation);
+            if (validation === false) {
+                navigate('/login');
+            } else if (validation === true) {
+                setIsSuccessMessage(true); // Show success message
+
+            }
         }
     };
 
@@ -70,6 +81,12 @@ const AddressForm = ({ onSubmit }) => {
                 <input type="text" id="zip" name="zip" value={formData.zip} onChange={handleChange} required />
             </div>
             <button type="submit">Add Address</button>
+
+            {isSuccessMessage && (
+                <div className="success-message">Address added successfully!</div>
+            )}
+
+
         </form>
     );
 };

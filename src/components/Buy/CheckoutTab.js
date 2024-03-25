@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Nav, Tab, Col, Row } from 'react-bootstrap';
-import AddressForm from './AddressForm';
 import SavedAddresses from './SavedAddresses';
+import AddressForm from './AddressForm';
 
-const CheckoutTab = ({ onSubmit, savedAddresses }) => {
-  const [activeKey, setActiveKey] = useState('new');
+const CheckoutTab = ({ onSubmit }) => {
+  const [activeKey, setActiveKey] = useState('select');
 
   const handleSelectAddress = (address) => {
     setActiveKey('select'); // Switch to "Select Address" tab on selection
@@ -12,34 +12,34 @@ const CheckoutTab = ({ onSubmit, savedAddresses }) => {
   };
 
   const handleNewAddressSubmit = (formData) => {
-    setActiveKey('select'); // Switch to "Select Address" tab on submission
-    onSubmit(formData); // Pass the new address to parent component
+    // Handle submission of new address
+    // You can define the onSubmit function to handle this
+    // For now, let's just log the form data
+    console.log(formData);
   };
-  savedAddresses='';
+
   return (
     <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
       <Row>
-        <Col sm={4}>
-          <Nav variant="pills" className="flex-column">
-            <Nav.Item>
-              <Nav.Link eventKey="new">Add New Address</Nav.Link>
-            </Nav.Item>
+        <Col sm={12}>
+          <Nav variant="pills">
             <Nav.Item>
               <Nav.Link eventKey="select">Select Saved Address</Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="add">Add New Address</Nav.Link>
+            </Nav.Item>
           </Nav>
         </Col>
-        <Col sm={8}>
+      </Row>
+      <Row>
+        <Col sm={12}>
           <Tab.Content>
-            <Tab.Pane eventKey="new">
-              <AddressForm onSubmit={handleNewAddressSubmit} />
-            </Tab.Pane>
             <Tab.Pane eventKey="select">
-              {savedAddresses.length > 0 ? (
-                <SavedAddresses addresses={savedAddresses} onSelectAddress={handleSelectAddress} />
-              ) : (
-                <p>You don't have any saved addresses yet.</p>
-              )}
+              <SavedAddresses onSelectAddress={handleSelectAddress} />
+            </Tab.Pane>
+            <Tab.Pane eventKey="add">
+              <AddressForm onSubmit={handleNewAddressSubmit} />
             </Tab.Pane>
           </Tab.Content>
         </Col>
