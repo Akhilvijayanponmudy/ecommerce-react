@@ -10,11 +10,10 @@ const BuyComponent = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         const fetchProduct = async () => {
             setIsLoading(true);
-
             try {
                 const response = await axios.get(`${baseURL}buy/${id}`)
                 setProduct(response.data.product);
