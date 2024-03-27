@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom'; // Importing useHistory here
 import { Container, Row, Col } from "react-bootstrap";
 import Style from './buy.module.css';
-import { useParams } from 'react-router-dom';
 import axios from "axios";
 import baseURL from '../../api/apiConfig';
-import ProductCard from './useProducts';
 import CheckoutTab from './CheckoutTab';
+
 const BuyComponent = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [dataFromChild, setDataFromChild] = useState(null);
+    // const history = useHistory(); // Initializing useHistory here
+
     useEffect(() => {
         const fetchProduct = async () => {
             setIsLoading(true);
             try {
                 const response = await axios.get(`${baseURL}buy/${id}`)
                 setProduct(response.data.product);
-            } catch {
+            } catch (error) {
                 setError(error);
             } finally {
                 setIsLoading(false);
@@ -26,42 +29,53 @@ const BuyComponent = () => {
 
         fetchProduct();
     }, [id]);
+
     if (isLoading) {
         return <div>Loading product details...</div>;
     }
-
     if (error) {
         return <div>Error fetching product: {error.message}</div>;
     }
-
     if (!product) {
         return <div>Product not found with ID: {id}</div>;
     }
 
-    // console.log(product);
+    const handleDataFromChild = (data) => {
+        setDataFromChild(data);
+    };
 
+    function handleBye() {
+        if (dataFromChild && product._id) {
+            console.log(dataFromChild);
+            console.log(product._id);
+
+            // history.push({
+            //     pathname: '/payment',
+            //     state: { dataFromChild, productId: product._id }
+            // });
+        }
+    }
 
     return (
         <section className={Style.BuyComponentComponent}>
             <Container>
                 <Row>
                     <Col xs={12} lg={7}>
-                        <CheckoutTab />
+                        <CheckoutTab sendDataToParent={handleDataFromChild} />
                     </Col>
                     <Col xs={12} lg={5}>
-
                         <div className={Style.buyItemdetails}>
                             <figure><img src={`${baseURL}uploads/${product.primaryImage}`} alt={product.productName} /></figure>
                             <p>{product.productName}</p>
                             <div>
                                 <p>Price: {product.productCurrentPrice}</p>
-                                <p>Quandity: 1</p>
+                                <p>Quantity: 1</p>
                             </div>
                         </div>
-
                         <h5>Total : Rs. 12000</h5>
                     </Col>
                 </Row>
+                <button onClick={handleBye}>Buy Now</button>
             </Container>
         </section>
     )
