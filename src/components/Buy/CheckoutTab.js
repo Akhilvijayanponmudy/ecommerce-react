@@ -3,20 +3,16 @@ import { Nav, Tab, Col, Row } from 'react-bootstrap';
 import SavedAddresses from './SavedAddresses';
 import AddressForm from './AddressForm';
 
-const CheckoutTab = ({ onSubmit }) => {
+const CheckoutTab = ({ sendDataToParent }) => {
   const [activeKey, setActiveKey] = useState('select');
+  const [dataFromChild, setDataFromChild] = useState(null);
 
-  const handleSelectAddress = (address) => {
-    setActiveKey('select'); // Switch to "Select Address" tab on selection
-    onSubmit(address); // Pass the selected address to parent component
+  const handleDataFromChild = (data) => {
+    setDataFromChild(data);
   };
 
-  const handleNewAddressSubmit = (formData) => {
-    // Handle submission of new address
-    // You can define the onSubmit function to handle this
-    // For now, let's just log the form data
-    console.log(formData);
-  };
+  sendDataToParent(dataFromChild);
+
 
   return (
     <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
@@ -36,10 +32,10 @@ const CheckoutTab = ({ onSubmit }) => {
         <Col sm={12}>
           <Tab.Content>
             <Tab.Pane eventKey="select">
-              <SavedAddresses onSelectAddress={handleSelectAddress} />
+              <SavedAddresses sendDataToParent={handleDataFromChild} />
             </Tab.Pane>
             <Tab.Pane eventKey="add">
-              <AddressForm onSubmit={handleNewAddressSubmit} />
+              <AddressForm />
             </Tab.Pane>
           </Tab.Content>
         </Col>

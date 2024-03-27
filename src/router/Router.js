@@ -11,6 +11,7 @@ import CartPage from "../pages/CartPage";
 import BuyPage from "../pages/BuyPage";
 import Test from "../pages/test";
 import Account from "../pages/Account"
+import Payment from "../pages/Payment"
 // import LoginRequired from "../components/loginRequired/loginRequired";
 
 function AppRouter() {
@@ -27,6 +28,7 @@ function AppRouter() {
                 <Route path="/buy/:id" element={<BuyPage />} />
                 <Route path="/test" element={<Test />} />
                 <Route path="/account" element={<Account />} />
+                <Route path="/payment" element={<Payment />} />
                 {/* <Route path="/cart/:id" element={<LoginRequired ><CartPage /></LoginRequired>} /> */}
 
 
