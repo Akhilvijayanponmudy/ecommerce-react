@@ -18,7 +18,8 @@ const Cart = () => {
                 navigate('/login');
                 return;
             }
-            const response = await axios.get(`${baseURL}cart`, {
+            const response = await axios.get(`${baseURL}cart`,
+             {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
