@@ -25,8 +25,6 @@ const ProductDetail = ({ props }) => {
   }
 
 
-
-
   const productId = productDetailsArray[0][1]._id;
   const productName = productDetailsArray[0][1].productName;
   const primaryImageUr = productDetailsArray[0][1].primaryImage;

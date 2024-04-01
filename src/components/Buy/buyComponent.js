@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'; // Importing useHistory here
+import { useParams, useNavigate } from 'react-router-dom'; // Importing useHistory here
 import { Container, Row, Col } from "react-bootstrap";
 import Style from './buy.module.css';
 import axios from "axios";
 import baseURL from '../../api/apiConfig';
 import CheckoutTab from './CheckoutTab';
+import getJWTtoken from '../../contexts/checkJWTexistance';
+import JwtValidateExpiry from "../../contexts/jwtVlidationCheck";
 
 const BuyComponent = () => {
     const { id } = useParams();
@@ -13,13 +15,30 @@ const BuyComponent = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [dataFromChild, setDataFromChild] = useState(null);
     // const history = useHistory(); // Initializing useHistory here
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchProduct = async () => {
             setIsLoading(true);
             try {
-                const response = await axios.get(`${baseURL}buy/${id}`)
-                setProduct(response.data.product);
+                const accessToken = getJWTtoken();
+                if (accessToken) {
+                    const response = await axios.get(`${baseURL}buy/${id}`,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${accessToken}`,
+                            },
+                        });
+                    const validation = JwtValidateExpiry(response);
+                    if (validation === false) {
+                        navigate('/login');
+                    } else if (validation === true) {
+                        setProduct(response.data.product);
+                    }
+                } else {
+                    navigate('/login');
+                }
+
+
             } catch (error) {
                 setError(error);
             } finally {
@@ -33,6 +52,7 @@ const BuyComponent = () => {
     if (isLoading) {
         return <div>Loading product details...</div>;
     }
+
     if (error) {
         return <div>Error fetching product: {error.message}</div>;
     }
@@ -44,15 +64,39 @@ const BuyComponent = () => {
         setDataFromChild(data);
     };
 
-    function handleBye() {
+    const handleBye = async () => {
         if (dataFromChild && product._id) {
-            console.log(dataFromChild);
-            console.log(product._id);
+            // console.log(dataFromChild);
+            // console.log(product._id);
+            // const paymentData = { productId: product._id, addressId: dataFromChild }
+            const accessToken = getJWTtoken();
+            if (!accessToken) {
+                navigate('/login');
+            } else {
+                const response = await axios.get(`${baseURL}buy/payment-calculation/single`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                        params: {
+                            productId: product._id,
+                            addressId: dataFromChild
+                        }
+                    });
 
-            // history.push({
-            //     pathname: '/payment',
-            //     state: { dataFromChild, productId: product._id }
-            // });
+                const validation = JwtValidateExpiry(response);
+                if (validation === false) {
+                    navigate('/login');
+                } else if (validation === true) {
+                    if (response.data.price) {
+                        const productPrice = response.data.price;
+                       console.log(productPrice);
+                        navigate('/payment', { state: { 'totalPrice': productPrice ,'address':dataFromChild} });
+                    }
+
+                }
+            }
+
         }
     }
 
@@ -76,6 +120,7 @@ const BuyComponent = () => {
                     </Col>
                 </Row>
                 <button onClick={handleBye}>Buy Now</button>
+
             </Container>
         </section>
     )

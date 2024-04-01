@@ -44,12 +44,10 @@ const AddressForm = ({ onSubmit }) => {
                 });
 
             const validation = JwtValidateExpiry(response);
-            console.log(validation);
             if (validation === false) {
                 navigate('/login');
             } else if (validation === true) {
                 setIsSuccessMessage(true); // Show success message
-
             }
         }
     };
