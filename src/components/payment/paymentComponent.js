@@ -1,19 +1,38 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import {  Button } from "react-bootstrap";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Button } from "react-bootstrap";
 import axios from 'axios';
 import baseURL from '../../api/apiConfig';
+import getJWTtoken from '../../contexts/checkJWTexistance';
+import JwtValidateExpiry from '../../contexts/jwtVlidationCheck';
 
 function PaymentComponent() {
     const location = useLocation();
-    const { totalPrice, address } = location.state || {};
+    const navigate = useNavigate();
 
-    const PaymentSubmission= async()=>{
+    const { totalPrice, address, state } = location.state || {};
+    const PaymentSubmission = async () => {
 
-        const response=await axios.post(`${baseURL}buy/payment`)
-
+        const accessToken = getJWTtoken();
+        const response = await axios.post(`${baseURL}buy/payment`,
+            { paymentId: 'test-id', amount: totalPrice, address: address, state: state },
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
+        const validation = JwtValidateExpiry(response);
+        if (validation === false) {
+            navigate('/login');
+        }
+        console.log(response.status);
+        if (response.status === 200) {
+            navigate('/account');
+        } else {
+            navigate('/');
+        }
     }
-    const cashOnDelivery= async()=>{
+    const cashOnDelivery = async () => {
 
     }
 
@@ -21,8 +40,8 @@ function PaymentComponent() {
         <div>
             <h5>Total Price: {totalPrice}</h5>
             <input type="text" placeholder="Enter Account Number" />
-            <Button variant="primary" onClick={()=>PaymentSubmission()}> Pay </Button>
-            <Button variant="secondary" onClick={()=>cashOnDelivery()}> Cash On Delivery </Button>
+            <Button variant="primary" onClick={() => PaymentSubmission()}> Pay </Button>
+            <Button variant="secondary" onClick={() => cashOnDelivery()}> Cash On Delivery </Button>
         </div>
     );
 }

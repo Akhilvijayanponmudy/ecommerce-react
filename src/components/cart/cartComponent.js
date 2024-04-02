@@ -1,17 +1,18 @@
-import React, { useState, useEffect,useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Style from './cart.module.css'
 import { Container, Row, Button } from "react-bootstrap";
 import getJWTtoken from "../../contexts/checkJWTexistance";
 import axios from 'axios';
 import baseURL from "../../api/apiConfig";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Cart = () => {
 
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]); // State to hold cart items (with quantity)
 
-    const fetchCartData =useCallback( async () => {
+    const fetchCartData = useCallback(async () => {
         try {
             const accessToken = getJWTtoken();
             if (!accessToken) {
@@ -19,17 +20,17 @@ const Cart = () => {
                 return;
             }
             const response = await axios.get(`${baseURL}cart`,
-             {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            });
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
             setCartItems(response.data);
         } catch (error) {
             console.log(error);
             navigate('/login');
         }
-    },[navigate]);
+    }, [navigate]);
 
 
     useEffect(() => {
@@ -124,6 +125,12 @@ const Cart = () => {
     const getTotalPrice = () => {
         return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
     };
+
+    // const cartBuy = () => {
+    //     console.log('buttton');
+    // }
+
+
     return (
         <section className={Style.cartSection}>
             <Container>
@@ -179,7 +186,9 @@ const Cart = () => {
                     <div className={Style.priceSection}>
                         Total Price: Rs. {getTotalPrice()}
                         <div className={Style.buyBtnsec}>
-                            <Button variant="primary">Buy</Button>
+                            <Button variant="primary">Buy test</Button>
+                            <Link to={`/buy/cart/`} className={Style.buyBtn} >Buy Now</Link>
+
                         </div>
                     </div>
                 </Row>
@@ -190,6 +199,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-
-// test
