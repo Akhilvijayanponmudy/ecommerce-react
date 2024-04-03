@@ -41,7 +41,6 @@ const BuyComponent = () => {
                     if (validation === false) {
                         navigate('/login');
                     } else if (validation === true) {
-                        console.log(response.data.productQuantity);
                         setProduct(response.data.product);
                         settotalPrice(response.data.totalPrice)
                     }

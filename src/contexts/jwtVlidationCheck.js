@@ -5,7 +5,7 @@ const JwtValidateExpiry = (response) => {
             // localStorage.removeItem('accessToken');
             return false;
 
-        }else{
+        } else {
             return true;
         }
     }

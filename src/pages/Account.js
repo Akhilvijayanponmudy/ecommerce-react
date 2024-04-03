@@ -1,7 +1,8 @@
 // import React, { useState, useEffect } from 'react';
 import React from 'react';
 import Header from "../utlis/header";
-// import a
+import UserAccount from "../components/account/accountComponent"
+import Tabs from "../components/account/tabs"
 
 function About() {
 
@@ -9,6 +10,8 @@ function About() {
         <div>
             <Header />
             <h1>Account Page</h1>
+            <UserAccount />
+            <Tabs />
         </div>
     )
 }
