@@ -15,7 +15,7 @@ function PaymentComponent() {
 
         const accessToken = getJWTtoken();
         const response = await axios.post(`${baseURL}buy/payment`,
-            { paymentId: 'test-id', amount: totalPrice, address: address, state: state },
+            { paymentId: 'test-id', productAmount: totalPrice, address: address, state: state },
             {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

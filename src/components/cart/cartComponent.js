@@ -6,6 +6,7 @@ import axios from 'axios';
 import baseURL from "../../api/apiConfig";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import JwtValidateExpiry from "../../contexts/jwtVlidationCheck"
 
 const Cart = () => {
 
@@ -25,7 +26,19 @@ const Cart = () => {
                         Authorization: `Bearer ${accessToken}`,
                     },
                 });
-            setCartItems(response.data);
+
+            const validation = JwtValidateExpiry(response);
+            if (validation === false) {
+                navigate('/login');
+            } else if (validation === true) {
+                setCartItems(response.data);
+
+            } else {
+                navigate('/login');
+
+            }
+
+
         } catch (error) {
             console.log(error);
             navigate('/login');
