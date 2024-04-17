@@ -11,11 +11,11 @@ function PaymentComponent() {
     const navigate = useNavigate();
 
     const { totalPrice, address, state } = location.state || {};
-    const PaymentSubmission = async () => {
-
+    const PaymentSubmission = async (paymentMethod) => {
+console.log(paymentMethod);
         const accessToken = getJWTtoken();
         const response = await axios.post(`${baseURL}buy/payment`,
-            { paymentId: 'test-id', productAmount: totalPrice, address: address, state: state },
+            { paymentId: 'test-id', productAmount: totalPrice, address: address, state: state, paymentMethod:paymentMethod },
             {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -32,16 +32,16 @@ function PaymentComponent() {
             navigate('/');
         }
     }
-    const cashOnDelivery = async () => {
+    // const cashOnDelivery = async () => {
 
-    }
+    // }
 
     return (
         <div>
             <h5>Total Price: {totalPrice}</h5>
             <input type="text" placeholder="Enter Account Number" />
-            <Button variant="primary" onClick={() => PaymentSubmission()}> Pay </Button>
-            <Button variant="secondary" onClick={() => cashOnDelivery()}> Cash On Delivery </Button>
+            <Button variant="primary" onClick={() => PaymentSubmission('prepaid')}> Pay </Button>
+            <Button variant="secondary" onClick={() => PaymentSubmission('cod')}> Cash On Delivery </Button>
         </div>
     );
 }
