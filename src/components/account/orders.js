@@ -18,7 +18,7 @@ const Orders = () => {
             setIsLoading(true);
             const fetchAddress = async () => {
                 try {
-                    const response = await axios.get(`${baseURL}account/address`, {
+                    const response = await axios.get(`${baseURL}orders`, {
                         headers: {
                             Authorization: `Bearer ${accessToken}`,
                         },
@@ -27,6 +27,7 @@ const Orders = () => {
                     if (validation === false) {
                         navigate('/login');
                     } else if (validation === true) {
+                        console.log(response);
                         const userAddresses = response.data.addressArr.items;
                         setAddressArr(userAddresses);
                     }
