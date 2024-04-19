@@ -47,11 +47,15 @@ const UserLoginForm = () => {
                 // setIsLoggedIn(true);
                 navigate('/');
             } else {
-                setResponseMessage('Login failed. Access token not received.');
+                setResponseMessage(response.data.message);
+
+                // setResponseMessage('Login failed. Access token not received.');
             }
 
         } catch (error) {
             console.error('Error:', error);
+            // setResponseMessage(response.data.message);
+
             setResponseMessage('An error occurred.');
         }
     }

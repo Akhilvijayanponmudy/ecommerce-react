@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddressForm from "../Buy/AddressForm"
 import Orders from './orders';
+import AllOrders from './allOrders'
 
 const Tabs = ({ children }) => {
     const [activeTab, setActiveTab] = useState(0);
@@ -36,10 +37,16 @@ const Tab = ({ children }) => {
 const ExampleComponent = () => {
     return (
         <Tabs>
-            <Tab title="Orders">
+            <Tab title="Active Orders">
                 <div>
-                    <h2>Orders</h2>
+                    <h2>Active Orders</h2>
                     <Orders />
+                </div>
+            </Tab>
+            <Tab title="All Orders">
+                <div>
+                    <h2>All Orders</h2>
+                    <AllOrders />
                 </div>
             </Tab>
 
