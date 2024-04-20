@@ -3,8 +3,11 @@ import { Col } from 'react-bootstrap';
 import Style from './productsList.module.css'
 import { Link } from "react-router-dom";
 import baseURL from "../../api/apiConfig";
-const useProductList = ({ _id, productName,productActualPrice,productCurrentPrice, primaryImage}) => {
 
+
+
+
+const useProductList = ({ _id, productName,productActualPrice,productCurrentPrice, primaryImage}) => {
 
     // Function to calculate discount percentage
     const calculateDiscountPercentage = () => {

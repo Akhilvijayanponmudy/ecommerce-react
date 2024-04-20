@@ -4,14 +4,14 @@ import baseURL from "../../api/apiConfig";
 import getJWTtoken from "../../contexts/checkJWTexistance";
 import { useNavigate } from 'react-router-dom';
 import JwtValidateExpiry from "../../contexts/jwtVlidationCheck";
+import UseOrders from "./useOrders";
 
 const Orders = () => {
     const navigate = useNavigate();
     const accessToken = getJWTtoken();
-    const [addressArr, setAddressArr] = useState([]);
+    const [OrdersArr, setOrdersArr] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
-
 
     useEffect(() => {
         if (accessToken) {
@@ -27,40 +27,51 @@ const Orders = () => {
                     if (validation === false) {
                         navigate('/login');
                     } else if (validation === true) {
-                        console.log(response);
-                        const userAddresses = response.data.addressArr.items;
-                        setAddressArr(userAddresses);
+                        const ordersRecArr = response.data.ordersArr;
+                        setOrdersArr(ordersRecArr);
                     }
 
                 } catch (error) {
                     console.log(error);
                     setError(error);
-
                 } finally {
                     setIsLoading(false);
                 }
             }
             fetchAddress();
-
         } else {
             navigate('/login');
-
         }
     }, []);
-
-
-
     if (isLoading) {
         return <div>Loading Addresses</div>;
     }
-
     if (error) {
         return <div>Error fetching product: {error.message}</div>;
     }
 
     return (
         <div>
-            <p>Order Component</p>
+            <p>Active Orders</p>
+            {
+                OrdersArr.map((orders, index) => {
+                    const { productName, productActualPrice, paymentMethod, shippingAddress, orderdDate } = orders;
+                    const date = new Date(orderdDate);
+                    const options = { month: 'short', day: '2-digit', year: 'numeric' };
+                    const formattedDate = date.toLocaleDateString('en-US', options);
+
+                    return (
+                        <UseOrders
+                            id={index}
+                            productName={productName}
+                            productActualPrice={productActualPrice}
+                            paymentMethod={paymentMethod}
+                            shippingAddressData={shippingAddress}
+                            orderdDate={formattedDate}
+                        />
+                    )
+                })
+            }
         </div>
     )
 }
