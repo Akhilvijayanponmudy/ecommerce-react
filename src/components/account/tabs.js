@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AddressForm from "../Buy/AddressForm"
 import Orders from './orders';
 import AllOrders from './allOrders'
-
+import AllAddress from './allAddresses'
 const Tabs = ({ children }) => {
     const [activeTab, setActiveTab] = useState(0);
 
@@ -50,6 +50,11 @@ const ExampleComponent = () => {
                 </div>
             </Tab>
 
+            <Tab title="All Addresses">
+                <div>
+                    <AllAddress />
+                </div>
+            </Tab>
             <Tab title="Add New Address">
                 <div>
                     <AddressForm />

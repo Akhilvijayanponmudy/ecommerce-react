@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Form, Button, Container } from 'react-bootstrap';
 import axios from 'axios';
 import Style from './userLogin.module.css'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation  } from "react-router-dom";
 const UserLoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
     const [validationError, setValidationError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const previousPath = location.state?.from;
+console.log(previousPath);
 
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
 

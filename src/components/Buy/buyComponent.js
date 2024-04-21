@@ -69,17 +69,17 @@ const BuyComponent = () => {
     if (!product) {
         return <div>Product not found with ID: {id}</div>;
     }
-
     const handleDataFromChild = (data) => {
         setDataFromChild(data);
     };
 
 
     const handleBye = async (id) => {
-        console.log(id);
-        navigate('/payment', { state: { 'totalPrice': totalPrice, 'address': dataFromChild, 'state': id } });
+        console.log(dataFromChild);
+        if (dataFromChild) {
+            navigate('/payment', { state: { 'totalPrice': totalPrice, 'address': dataFromChild, 'state': id } });
+        }
     }
-
 
     if (Array.isArray(product)) {
         return (
