@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import baseURL from '../../api/apiConfig';
 import getJWTtoken from '../../contexts/checkJWTexistance';
-
 const SavedAddresses = ({ sendDataToParent }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,6 +9,7 @@ const SavedAddresses = ({ sendDataToParent }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const accessToken = getJWTtoken();
         const response = await axios.get(`${baseURL}account/address`, {
@@ -17,6 +17,7 @@ const SavedAddresses = ({ sendDataToParent }) => {
             Authorization: `Bearer ${accessToken}`
           }
         });
+
         if (response.data.addressArr.items) {
           setAddresses(response.data.addressArr.items);
         } else {
@@ -28,24 +29,23 @@ const SavedAddresses = ({ sendDataToParent }) => {
         setIsLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
   const handleAddressSelect = (event) => {
-    const selectedAddressId = event.target.value;
-    // const selectedAddress = addresses.find(address => address._id === selectedAddressId);
     const selectedAddress = event.target.value;
     sendDataToParent(selectedAddress);
   };
 
   if (isLoading) {
     return <div>Loading product details...</div>;
-  };
+  }
   if (error) {
     return <div>Error fetching product: {error.message}</div>;
   }
-  if (!addresses) {
-    return <div>No Saved Addresses</div>
+  if (!addresses || addresses.length === 0) {
+    return <div>No addresses added yet.</div>;
   }
 
   return (
@@ -67,5 +67,6 @@ const SavedAddresses = ({ sendDataToParent }) => {
     </div>
   );
 };
+
 
 export default SavedAddresses;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Nav, Tab, Col, Row } from 'react-bootstrap';
 import SavedAddresses from './SavedAddresses';
 import AddressForm from './AddressForm';
@@ -11,8 +11,9 @@ const CheckoutTab = ({ sendDataToParent }) => {
     setDataFromChild(data);
   };
 
-  sendDataToParent(dataFromChild);
-
+  useEffect(() => {
+    sendDataToParent(dataFromChild);
+  }, [dataFromChild, sendDataToParent]);
 
   return (
     <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
