@@ -3,44 +3,42 @@ import ProductsList from "../components/productsList/productsList";
 import baseURL from '../api/apiConfig';
 import Header from '../utlis/header';
 
-function Products() {
-    const [products, setProducts] = useState([]); 
-    const [isLoading, setIsLoading] = useState(false); 
+function CatProducts() {
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const { id } = useParams();
 
-    const productsUrl = 'products'; 
     useEffect(() => {
         const fetchData = async () => {
-            setIsLoading(true); 
-            setError(null); 
+            setIsLoading(true);
+            setError(null);
 
             try {
-                const response = await fetch(`${baseURL}${productsUrl}`);
-                if (!response.ok) { 
+                const response = await fetch(`${baseURL}products/category/${id}`);
+                if (!response.ok) {
                     throw new Error(`Failed to fetch products: ${response.statusText}`);
                 }
-                const data = await response.json(); 
+                const data = await response.json();
                 setProducts(data);
             } catch (err) {
-                setError(err.message); 
+                setError(err.message);
             } finally {
-                setIsLoading(false); 
+                setIsLoading(false);
             }
         };
 
         fetchData();
-    }, []); // Empty dependency array to fetch data only once on component mount
-
-    // {!isLoading && !error && <ProductsList products={products} />}
+    }, []);
     return (
         <div>
             <Header />
             {isLoading && <p>Loading products...</p>}
             {error && <p>Error: {error}</p>}
-             {!isLoading && !error && <ProductsList props={products.products} />}
+            {!isLoading && !error && <ProductsList props={products.products} />}
 
         </div>
     );
 }
 
-export default Products;
+export default CatProducts;

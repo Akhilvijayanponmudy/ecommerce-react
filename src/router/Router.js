@@ -20,6 +20,7 @@ function AppRouter() {
             <Routes>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/products/:id" element={<Products />} />
                 <Route path="/detail/:id" element={<ProductDetails />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<UserLogin />} />
