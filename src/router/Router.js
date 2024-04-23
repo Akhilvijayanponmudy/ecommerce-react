@@ -12,6 +12,7 @@ import BuyPage from "../pages/BuyPage";
 import Test from "../pages/test";
 import Account from "../pages/Account"
 import Payment from "../pages/Payment"
+import ProductsCat from "../pages/CategoryProducts"
 // import LoginRequired from "../components/loginRequired/loginRequired";
 
 function AppRouter() {
@@ -20,7 +21,7 @@ function AppRouter() {
             <Routes>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/products" element={<Products />} />
-                <Route path="/products/:id" element={<Products />} />
+                <Route path="/products/:id" element={<ProductsCat />} />
                 <Route path="/detail/:id" element={<ProductDetails />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<UserLogin />} />

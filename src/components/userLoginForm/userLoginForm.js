@@ -2,18 +2,13 @@ import React, { useState } from "react";
 import { Form, Button, Container } from 'react-bootstrap';
 import axios from 'axios';
 import Style from './userLogin.module.css'
-import { Link, useNavigate,useLocation  } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 const UserLoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
     const [validationError, setValidationError] = useState('');
     const navigate = useNavigate();
-    const location = useLocation();
-    const previousPath = location.state?.from;
-console.log(previousPath);
-
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -27,10 +22,6 @@ console.log(previousPath);
     const storeAccessToken = (JWTtoken) => {
         localStorage.setItem('accessToken', JWTtoken);
     };
-
-    // const getAccessToken = () => {
-    //     return localStorage.getItem('accessToken');
-    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,18 +38,15 @@ console.log(previousPath);
 
             if (JWTtoken) {
                 storeAccessToken(JWTtoken);
-                // setIsLoggedIn(true);
-                navigate('/');
+                // navigate('/');
+                window.history.back()
             } else {
                 setResponseMessage(response.data.message);
 
-                // setResponseMessage('Login failed. Access token not received.');
             }
 
         } catch (error) {
             console.error('Error:', error);
-            // setResponseMessage(response.data.message);
-
             setResponseMessage('An error occurred.');
         }
     }

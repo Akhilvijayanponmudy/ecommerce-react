@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import ProductsList from "../components/productsList/productsList";
 import baseURL from '../api/apiConfig';
 import Header from '../utlis/header';
+import { useParams } from 'react-router-dom';
 
 function CatProducts() {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const { id } = useParams();
+
 
     useEffect(() => {
         const fetchData = async () => {

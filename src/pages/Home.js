@@ -8,8 +8,8 @@ import LatestProducts from "../components/homeLatestProducts/latestProducts";
 
 function Home() {
   const [data] = useState(null);
-  const [categories, setCategories] = useState([]); // Separate state for categories
-  const [products, setProducts] = useState([]); // Separate state for products
+  const [categories, setCategories] = useState([]); 
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     
