@@ -39,18 +39,15 @@ const UseOrders = ({ id, orderID, productName, productActualPrice, paymentMethod
                     },
                 });
                 if(response){
-                // window.location.reload();
-                console.log(response.data);
-
+               window.location.reload();
+                console.log(response);
                 }
-
             } catch (error) {
                 console.log(error);
             }
         }
 
     }
-    console.log(orderID);
 
     return (
         <Row>
