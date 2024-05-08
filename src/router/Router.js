@@ -13,6 +13,7 @@ import Test from "../pages/test";
 import Account from "../pages/Account"
 import Payment from "../pages/Payment"
 import ProductsCat from "../pages/CategoryProducts"
+import NewHome from "../pages/NewHome"
 // import LoginRequired from "../components/loginRequired/loginRequired";
 
 function AppRouter() {
@@ -31,6 +32,10 @@ function AppRouter() {
                 <Route path="/test" element={<Test />} />
                 <Route path="/account" element={<Account />} />
                 <Route path="/payment" element={<Payment />} />
+
+
+
+                <Route path="/home" element={<NewHome />} />
                 {/* <Route path="/cart/:id" element={<LoginRequired ><CartPage /></LoginRequired>} /> */}
 
 
