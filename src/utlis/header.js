@@ -13,7 +13,7 @@ function Header() {
   };
 
   return (
-    <header>
+    <header  className={`${styles.dFlex}`}>
       <Container>
         <Row>
           <Col xs={12} lg={4}>

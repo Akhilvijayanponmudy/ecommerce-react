@@ -1,18 +1,21 @@
-:root {
-    --primary-color: #ffffff;
-    --secondary-color: #000000;
-    --sub-color: #e4dddd;
-    --background-color: #429519;
-}
-
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+
+:global(.dFlex) {
+    display: flex;
+}
+
+:global(.alignCent) {
+    align-items: center;
+}
+
 body {
-    background-color: #e4e4e4;
+    background-color: #e4e4e4 !important;
+    height: 200vh;
 }
 
 .align-cen {
@@ -34,7 +37,7 @@ body {
 }
 
 
-header .mob-header {
+header .mobHeader {
     display: none;
 }
 
@@ -45,17 +48,25 @@ header figure {
     margin-bottom: 0;
 }
 
+
+
+
+
 header .topHeader {
     background-color: #429519;
     padding: 15px 0;
     width: 100%;
 }
-header .topHeader .headerContact {
+
+header .topHeader .headerContacts {
     display: flex;
+
 }
+
 header .topHeader .headerConatctWrap {
     display: flex;
-    justify-content: space-around;}
+    justify-content: space-around;
+}
 
 
 header .siteLogo {
@@ -138,7 +149,7 @@ header .topHeader .numberSec .cardTitle {
 }
 
 header .topHeader .numberSec i {
-    font-size: 35px;
+    font-size: 25px;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -174,32 +185,34 @@ header .topHeader .numberSec .numLinkWrap {
 
 
 
-header .bottom-header {
+header .bottomHeader {
     background-color: #fff;
     padding: 15px 0;
 }
 
-header .bottom-header a {
+header .bottomHeader a {
     border: none;
     border-radius: 50px;
     position: relative;
     padding: 7px;
-    color: var(--secondary-color);
+    color: #000;
 }
 
-header .bottom-header .offer-btn {
+header .bottomHeader .offerBtn {
     align-items: center;
     background-color: #ffebd9;
     margin-right: 10px;
-
+    text-decoration: none;
 }
 
-header .bottom-header .new-arrival-btn {
+header .bottomHeader .newArrivalBtn {
     align-items: center;
     background-color: #e1f0d8;
+    text-decoration: none;
+
 }
 
-header .bottom-header .offer-btn::before {
+header .bottomHeader .offerBtn::before {
     content: ' ';
     /* background-image: url(../../public/images/header/); */
     background-image: url(../../public/images/header/photograph-thunder-svgrepo-com.svg);
@@ -210,7 +223,7 @@ header .bottom-header .offer-btn::before {
     margin-right: 5px;
 }
 
-header .bottom-header .new-arrival-btn::before {
+header .bottomHeader .newArrivalBtn::before {
     content: ' ';
     background-image: url(../../public/images/header/tick-circle-svgrepo-com.svg);
     width: 20px;
@@ -222,42 +235,46 @@ header .bottom-header .new-arrival-btn::before {
 }
 
 
-header .bottom-header .menus {
+header .bottomHeader .menus {
     list-style: none;
     justify-content: space-evenly;
 }
 
-header .bottom-header .menus li {
+header .bottomHeader .menus li {
     padding-left: 10px;
 }
 
-header .bottom-header .button-group {
+header .bottomHeader .menus li a {
+    text-decoration: none;
+}
+
+header .bottomHeader .buttonGroup {
     display: flex;
     justify-content: flex-end;
 }
 
-header .bottom-header .categories-btn {
+header .bottomHeader .categoriesBtn {
     border: none;
     background-color: #fff;
 }
 
-header .bottom-header .categories-btn:focus {
+header .bottomHeader .categoriesBtn:focus {
     outline: none;
 }
 
-header .bottom-header .dropdown-wrap {
+header .bottomHeader .dropdownWrap {
     display: flex;
     align-items: center;
 
 }
 
-header .header-titles-f {
+header .headerTitlesF {
     font-size: 16px;
     font-weight: 500;
 }
 
 
-header .bottom-header .dropdown-wrap::before {
+header .bottomHeader .dropdownWrap::before {
     content: '';
     display: block;
     width: 20px;
@@ -269,7 +286,7 @@ header .bottom-header .dropdown-wrap::before {
 
 
 
-header .bottom-header .cat-drop-main-wrap.notActive .dropdown-wrap::after {
+header .bottomHeader .catDropMainWrap .deopNotActive::after {
     content: '';
     display: block;
     width: 20px;
@@ -277,10 +294,11 @@ header .bottom-header .cat-drop-main-wrap.notActive .dropdown-wrap::after {
     background-image: url(../../public/images/header/arrow-down.svg);
     background-size: cover;
     margin-left: 10px;
+
 }
 
 
-header .bottom-header .cat-drop-main-wrap.active .dropdown-wrap::after {
+header .bottomHeader .catDropMainWrap .dropActive::after {
     content: '';
     display: block;
     width: 20px;
@@ -291,16 +309,24 @@ header .bottom-header .cat-drop-main-wrap.active .dropdown-wrap::after {
 }
 
 
-header .bottom-header .cat-drop-main-wrap.notActive .drop-menus {
+header .bottomHeader .catDropMainWrap .dropMenus {
+    position: relative;
+}
+
+header .bottomHeader .catDropMainWrap .dropMenus ul {
+    position: absolute;
+    padding-left: 0;
+}
+
+header .bottomHeader .catDropMainWrap.notActive .dropMenus {
     opacity: 0;
     pointer-events: none;
     transform: translateY(40px);
     transition: all .5s ease;
-
 }
 
 
-header .bottom-header .cat-drop-main-wrap.active .drop-menus {
+header .bottomHeader .catDropMainWrap.active .dropMenus {
     opacity: 1;
     transform: translateY(0);
     transition: all .5s ease;
@@ -308,23 +334,18 @@ header .bottom-header .cat-drop-main-wrap.active .drop-menus {
 }
 
 
-header .bottom-header .cat-drop-main-wrap {
+header .bottomHeader .catDropMainWrap {
     position: relative;
 }
 
-header .bottom-header .cat-drop-main-wrap .drop-menus {
-    position: absolute;
-    top: 49px;
-}
 
-header .bottom-header .cat-drop-main-wrap .drop-menus ul {
+header .bottomHeader .catDropMainWrap .dropMenus ul {
     list-style: none;
-    background-color: var(--primary-color);
-    /* background-color: red; */
+    background-color: #ffffff;
     width: 250px;
 }
 
-header .bottom-header .cat-drop-main-wrap .drop-menus ul li {
+header .bottomHeader .catDropMainWrap .dropMenus ul li {
     padding-bottom: 10px;
     font-size: 16px;
     font-weight: 600;
@@ -333,22 +354,22 @@ header .bottom-header .cat-drop-main-wrap .drop-menus ul li {
     justify-content: space-around;
 }
 
-header .bottom-header .cat-drop-main-wrap .drop-menus ul li:first-child {
+header .bottomHeader .catDropMainWrap .dropMenus ul li:first-child {
     padding-top: 10px;
 }
 
-header .bottom-header .cat-drop-main-wrap .drop-menus ul li a {
+header .bottomHeader .catDropMainWrap .dropMenus ul li a {
     display: flex;
     align-items: center;
 
 }
 
-header .bottom-header .cat-drop-main-wrap .drop-menus ul li a figure {
+header .bottomHeader .catDropMainWrap .dropMenus ul li a figure {
     margin-right: 10px;
 }
 
 
-header .bottom-header .cat-drop-main-wrap .drop-menus ul li::after {
+header .bottomHeader .catDropMainWrap .dropMenus ul li::after {
     content: '';
     display: block;
     background-image: url(../../public/images/header/arrow-right.svg);
@@ -362,14 +383,14 @@ header .bottom-header .cat-drop-main-wrap .drop-menus ul li::after {
 
 
 @media (max-width: 1209px) {
-    header .bottom-header button {
+    header .bottomHeader button {
         padding: 7px 7px;
     }
 
 }
 
 @media (max-width: 998px) {
-    header .bottom-header {
+    header .bottomHeader {
         display: none;
     }
 }
@@ -380,29 +401,29 @@ header .bottom-header .cat-drop-main-wrap .drop-menus ul li::after {
 
 
 @media (max-width: 998px) {
-    header section.mob-header {
+    header section.mobHeader {
         display: block;
-        background-color: var(--background-color);
+        background-color: #429519;
         padding: 15px 0;
     }
 
-    header .mob-header .searchBar {
+    header .mobHeader .searchBar {
         width: 100%;
         height: 35px;
         margin-top: 10px;
     }
 
-    header .mob-header .mob-logo {
+    header .mobHeader .mobLogo {
         width: 100%;
         height: 100%;
     }
 
-    header .mob-header .mob-logo img {
+    header .mobHeader .mobLogo img {
         width: 40px;
         height: auto;
     }
 
-    header .mob-header .icon-group {
+    header .mobHeader .iconGroup {
         width: 100%;
         height: 100%;
         display: flex;
@@ -410,12 +431,12 @@ header .bottom-header .cat-drop-main-wrap .drop-menus ul li::after {
         justify-content: space-evenly;
     }
 
-    header .mob-header .icon-group i {
+    header .mobHeader .iconGroup i {
         font-size: 27px;
         color: #fff;
     }
 
-    header .mob-header .mob-hamberger-menu {
+    header .mobHeader .mobHambergerMenu {
         position: absolute;
         top: 0;
         left: 0;
@@ -424,12 +445,13 @@ header .bottom-header .cat-drop-main-wrap .drop-menus ul li::after {
         width: 100vw;
     }
 
-    header .mob-header .mob-hamberger-menu ul {
+    header .mobHeader .mobHambergerMenu ul {
         padding-top: 115px;
+        padding-left: 0;
         color: #000;
     }
 
-    header .mob-header .mob-hamberger-menu ul li {
+    header .mobHeader .mobHambergerMenu ul li {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -437,7 +459,7 @@ header .bottom-header .cat-drop-main-wrap .drop-menus ul li::after {
         border-bottom: 1px solid #e7e7e7;
     }
 
-    header .mob-header .mob-hamberger-menu ul li::after {
+    header .mobHeader .mobHambergerMenu ul li::after {
         content: '';
         display: block;
         background-image: url(../../public/images/header/arrow-right.svg);
@@ -446,7 +468,7 @@ header .bottom-header .cat-drop-main-wrap .drop-menus ul li::after {
         background-size: cover;
     }
 
-    header .mob-header .mob-hamberger-menu .mob-close-btn {
+    header .mobHeader .mobHambergerMenu .mobCloseBtn {
         width: 30px;
         height: 30px;
         position: absolute;
@@ -454,35 +476,36 @@ header .bottom-header .cat-drop-main-wrap .drop-menus ul li::after {
         top: 27px;
     }
 
-    header .mob-header .mob-hamberger-menu .mob-close-btn img {
+    header .mobHeader .mobHambergerMenu .mobCloseBtn img {
         width: 100%;
         height: 100%;
     }
 
-    header .mob-header .mob-hamberger-menu ul li a {
+    header .mobHeader .mobHambergerMenu ul li a {
         display: flex;
         align-items: center;
         color: #000;
+        text-decoration: none;
     }
 
-    header .mob-header .mob-hamberger-menu ul li a figure {
+    header .mobHeader .mobHambergerMenu ul li a figure {
         padding-right: 50px;
     }
 
 
 
-    header .mob-header #mobMenuWrap.notActive {
+    header .mobHeader .notActiveMobHeader {
         z-index: 0;
     }
 
-    header .mob-header #mobMenuWrap.notActive .mob-hamberger-menu {
+    header .mobHeader .notActiveMobHeader .mobHambergerMenu {
         opacity: 0;
         pointer-events: none;
         transform: translateX(-100vw);
         transition: all .5s ease;
     }
 
-    header .mob-header #mobMenuWrap.active .mob-hamberger-menu {
+    header .mobHeader .activeMobHeader .mobHambergerMenu {
         opacity: 1;
         transform: translateX(0);
         transition: all .5s ease;
