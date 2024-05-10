@@ -173,8 +173,9 @@ function HeaderLatest() {
                         <Col xs={4} >
 
                             <div className={`${styles.iconGroup} `} >
-                                <a href=""><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                                <a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                <i> <FontAwesomeIcon icon={faShoppingCart} className={styles.icon} /></i>
+                                <i> <FontAwesomeIcon icon={faSignIn} className={styles.icon} /></i>
+
                             </div>
                         </Col>
 
