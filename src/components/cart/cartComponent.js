@@ -199,7 +199,6 @@ const Cart = () => {
                     <div className={Style.priceSection}>
                         Total Price: Rs. {getTotalPrice()}
                         <div className={Style.buyBtnsec}>
-                            <Button variant="primary">Buy test</Button>
                             <Link to={`/buy/cart/`} className={Style.buyBtn} >Buy Now</Link>
 
                         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Container } from "react-bootstrap";
 import baseURL from "../../api/apiConfig";
 import getJWTtoken from "../../contexts/checkJWTexistance";
 import { useNavigate } from 'react-router-dom';
@@ -55,19 +56,21 @@ const Orders = () => {
             <p>Active Orders</p>
             {
                 OrdersArr.map((orders, index) => {
-                    const { productName, productActualPrice, paymentMethod, shippingAddress, orderdDate } = orders;
+                    const { orderID, productName, productActualPrice, paymentMethod, shippingAddress, orderdDate, orderQuandity, productImage } = orders;
                     const date = new Date(orderdDate);
                     const options = { month: 'short', day: '2-digit', year: 'numeric' };
                     const formattedDate = date.toLocaleDateString('en-US', options);
-
                     return (
                         <UseOrders
                             id={index}
+                            orderID={orderID}
                             productName={productName}
                             productActualPrice={productActualPrice}
                             paymentMethod={paymentMethod}
                             shippingAddressData={shippingAddress}
                             orderdDate={formattedDate}
+                            orderQuandity={orderQuandity}
+                            productImage={productImage}
                         />
                     )
                 })
