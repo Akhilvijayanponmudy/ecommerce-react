@@ -103,7 +103,7 @@ function HeaderLatest() {
                                     <div className={`${styles.dropMenus} headerTitlesF`} >
 
 
-                                        <ul>
+                                        <ul className={styles.dropdownListWrap}> 
                                             <li><a href="">
                                                 <figure><img src="/images/header/demo-grocery-categories-menu-icon-01.png" alt="" />
                                                 </figure> Fruits & Vegitables

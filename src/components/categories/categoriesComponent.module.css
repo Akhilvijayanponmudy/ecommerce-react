@@ -1,0 +1,56 @@
+.homeCategoriesSection {
+    margin-bottom: 80px;
+}
+
+.iconWrap {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.iconWrap figure {
+    width: 64px;
+    height: 64px;
+}
+
+.iconWrap figure img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.iconFullWrap {
+    padding: 20px;
+    background: #e4e9ed;
+    border-radius: 100px;
+}
+
+.catLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+
+@media (max-width: 991px) {
+
+    
+    .homeCategoriesSection {
+        margin-bottom: 40px;
+    }
+
+    
+    .iconWrap figure {
+        width: 50px;
+        height: 50px;
+    }
+
+    .iconFullWrap {
+        padding: 10px;
+
+    }
+
+}

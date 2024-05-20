@@ -39,3 +39,16 @@ section.hotDeal .hotDealWrap span::after {
     color: #fff;
     margin-left: 10px;
 }
+
+
+
+    section.hotDeal {
+        margin-top: 140px;
+    }
+
+@media (min-width: 999px) {
+
+    section.hotDeal {
+        margin-top: 172px;
+    }
+}

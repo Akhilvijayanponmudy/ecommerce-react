@@ -1,5 +1,6 @@
 section.homeOfferListing {
 overflow: hidden;
+margin-bottom: 70px;
 }
 section.homeOfferListing a{
     text-decoration: none;
@@ -166,6 +167,13 @@ section.homeOfferListing .offerWrap .cardContents .offerBtn {
 }
 
 @media (max-width: 991px) {
+
+
+    section.homeOfferListing {
+        overflow: hidden;
+        margin-bottom: 50px;
+        }
+
     section.homeOfferListing .swiperWrap {
         padding-bottom: 25px;
     }
