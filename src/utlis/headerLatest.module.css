@@ -1,41 +1,9 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    top: 0;
 }
-
-
-:global(.dFlex) {
-    display: flex;
-}
-
-:global(.alignCent) {
-    align-items: center;
-}
-
-body {
-    background-color: #e4e4e4 !important;
-    height: 200vh;
-}
-
-.align-cen {
-    align-items: center;
-}
-
-
-
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1580px;
-    }
-}
-
-@media (max-width: 1199px) {
-    .container {
-        max-width: 1145px;
-    }
-}
-
 
 header .mobHeader {
     display: none;
@@ -47,9 +15,6 @@ header span,
 header figure {
     margin-bottom: 0;
 }
-
-
-
 
 
 header .topHeader {
@@ -176,7 +141,13 @@ header .topHeader .numberSec .numLinkWrap {
     header .topHeader {
         display: none;
     }
+
+
+
+
 }
+
+
 
 
 
@@ -186,9 +157,11 @@ header .topHeader .numberSec .numLinkWrap {
 
 
 header .bottomHeader {
-    background-color: #fff;
+    background-color: var(--secondary-sub-color);
     padding: 15px 0;
 }
+
+
 
 header .bottomHeader a {
     border: none;
@@ -265,7 +238,7 @@ header .bottomHeader .categoriesBtn:focus {
 header .bottomHeader .dropdownWrap {
     display: flex;
     align-items: center;
-
+    background-color: var(--secondary-sub-color);
 }
 
 header .headerTitlesF {
@@ -316,6 +289,7 @@ header .bottomHeader .catDropMainWrap .dropMenus {
 header .bottomHeader .catDropMainWrap .dropMenus ul {
     position: absolute;
     padding-left: 0;
+    background-color: var(--secondary-sub-color);
 }
 
 header .bottomHeader .catDropMainWrap.notActive .dropMenus {
@@ -341,8 +315,12 @@ header .bottomHeader .catDropMainWrap {
 
 header .bottomHeader .catDropMainWrap .dropMenus ul {
     list-style: none;
-    background-color: #ffffff;
+    background-color: var(--secondary-sub-color);
     width: 250px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    top: 22px;
 }
 
 header .bottomHeader .catDropMainWrap .dropMenus ul li {
@@ -382,12 +360,12 @@ header .bottomHeader .catDropMainWrap .dropMenus ul li::after {
 
 
 
-@media (max-width: 1209px) {
+/* @media (max-width: 1209px) {
     header .bottomHeader button {
         padding: 7px 7px;
     }
 
-}
+} */
 
 @media (max-width: 998px) {
     header .bottomHeader {

@@ -1,0 +1,87 @@
+.cardWrap a {
+    text-decoration: none;
+
+}
+
+.productCardWrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardWrap {
+    margin-bottom: 30px;
+}
+
+.productCardWrap figure {
+    width: 100%;
+    height: 100%;
+}
+
+.productCardWrap figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.productBorder {
+    border: 1px solid #a3adb7;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+
+.productDetails {
+    background: #f3f3f3;
+    border-radius: 5px;
+    padding: 10px 20px;
+
+}
+
+.productDetails .brandName {
+    font-size: 15px;
+    font-weight: 500;
+    color: #6b7b8b;
+
+}
+
+.productDetails .productName {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+}
+
+
+@media (min-width: 992px) {
+
+    .productCardWrap figure {
+        width: 230px;
+        height: 230px;
+    }
+
+    .productDetails .brandName {
+        font-size: 17px;
+
+
+    }
+
+    .productDetails .productName {
+        font-size: 20px;
+
+    }
+}
+
+
+@media (min-width: 1100px) {
+    .productCardWrap figure {
+        width: 270px;
+        height: 270px;
+    }
+
+}

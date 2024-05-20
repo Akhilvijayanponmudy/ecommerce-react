@@ -1,0 +1,15 @@
+.prodcutSection {
+    margin-bottom: 50px;
+}
+
+
+.prodcutSection span {
+    text-align: left;
+}
+
+@media (min-width: 996px) {
+
+    .prodcutSection span {
+        text-align: center;
+    }
+}
