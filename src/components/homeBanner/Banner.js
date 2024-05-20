@@ -10,6 +10,7 @@ const mobileBannerImages = [
     { id: 2, url: '/images/mobile/image2.jpg', altText: 'Mobile Banner Image 2' },
 ];
 
+
 const desktopBannerImages = [
     { id: 1, url: '/images/desktop/image1.jpg', altText: 'Desktop Banner Image 1' },
     { id: 2, url: '/images/desktop/image2.jpg', altText: 'Desktop Banner Image 2' },
