@@ -1,11 +1,13 @@
 section.homeOfferListing {
-overflow: hidden;
-margin-bottom: 70px;
+    overflow: hidden;
+    margin-bottom: 70px;
 }
-section.homeOfferListing a{
+
+section.homeOfferListing a {
     text-decoration: none;
 
 }
+
 section.homeOfferListing figure {
     width: 100%;
     height: 100%;
@@ -18,6 +20,8 @@ section.homeOfferListing figure img {
     border-radius: 15px;
     object-fit: cover;
     background-repeat: repeat;
+    transition: transform 1s ease;
+
 }
 
 section.homeOfferListing .offerWrap {
@@ -172,7 +176,7 @@ section.homeOfferListing .offerWrap .cardContents .offerBtn {
     section.homeOfferListing {
         overflow: hidden;
         margin-bottom: 50px;
-        }
+    }
 
     section.homeOfferListing .swiperWrap {
         padding-bottom: 25px;
@@ -180,12 +184,24 @@ section.homeOfferListing .offerWrap .cardContents .offerBtn {
 }
 
 
+section.homeOfferListing .offerImgs .imgWrap figure {
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.imgWrap:hover img {
+    transform: scale(1.2);
+}
 
 
 
+.swiper-slide figure {
+    overflow: hidden;
+}
 
-
-
+.swiper-slide figure:hover img {
+    transform: scale(1.3);
+}
 
 
 

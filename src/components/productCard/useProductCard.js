@@ -6,7 +6,7 @@ import styles from './useProductCard.module.css'
 const useProductcard = ({ id, productName, productcat, Imgurl, altText, link }) => {
     return (
         <Col key={id} xs={6} lg={3} className={styles.cardWrap}>
-            <Link to={link}>
+            <Link to={link} className={styles.productCardLinkWrap}>
                 <div className={styles.productCardWrap}>
                     <div className={styles.productBorder}>
                         <figure>

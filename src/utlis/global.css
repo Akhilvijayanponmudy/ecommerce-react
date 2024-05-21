@@ -74,3 +74,14 @@ p {
     }
 
 }
+
+body {
+    margin-top: 140px;
+}
+
+@media (min-width: 999px) {
+
+    body {
+        margin-top: 172px;
+    }
+}

@@ -23,6 +23,7 @@
     padding: 20px;
     background: #e4e9ed;
     border-radius: 100px;
+
 }
 
 .catLink {
@@ -32,17 +33,18 @@
     text-decoration: none;
     color: #000;
     margin-bottom: 30px;
+    position: relative;
 }
 
 
 @media (max-width: 991px) {
 
-    
+
     .homeCategoriesSection {
         margin-bottom: 40px;
     }
 
-    
+
     .iconWrap figure {
         width: 50px;
         height: 50px;
@@ -54,3 +56,37 @@
     }
 
 }
+@media (min-width: 992px) {
+
+
+    .iconFullWrap::after {
+        content: '';
+        width: 105px;
+        height: 105px;
+        border: dotted 3px #6b6767;
+        display: block;
+        position: absolute;
+        border-radius: 100px;
+        top: 0;
+        left: 0;
+    }
+    
+    .catLink:hover .iconFullWrap::after {
+        animation: animName 10s linear infinite;
+    }
+    
+    @keyframes animName {
+        0% {
+            transform: rotate(0deg);
+        }
+    
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+}
+
+
+/* animation: animName .8s linear infinite; */
+
