@@ -49,7 +49,7 @@ function HeaderLatest() {
 
                                 <div className={styles.headerContact}>
                                     <div className={styles.numberSec}>
-                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        <i className="fa fa-heart-o" aria-hidden="true"></i>
                                         <i> <FontAwesomeIcon icon={faHeart} className={styles.icon} /></i>
 
                                         <a href="#" className={styles.numLinkWrap}>

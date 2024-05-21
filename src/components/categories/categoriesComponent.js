@@ -75,7 +75,7 @@ const categoriesComponent = () => {
                     <div className={styles.iconWrap}>
                         {/* <span className="h1"> Explore With Categories</span> */}
                         {categoryArr.map((category) => (
-                            <Link to="#" className={styles.catLink}>
+                            <Link to="#"  key={category.id} className={styles.catLink}>
                                 <div className={styles.iconFullWrap}>
 
                                     <figure><img src={category.imgUrl} alt="" /></figure>
