@@ -17,7 +17,7 @@
 
 .productCardWrap figure {
     width: 100%;
-    height: 100%;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -39,7 +39,7 @@
     border: 1px solid #a3adb7;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 3px;
     border-radius: 10px;
     background: #fff;
 }
@@ -48,34 +48,62 @@
 .productDetails {
     background: #f3f3f3;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px;
 
 }
 
 .productDetails .brandName {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     color: #6b7b8b;
 
 }
 
 .productDetails .productName {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     color: #000000;
 }
 
 
+.priceWrap .currentPrice {
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    padding-right: 10px;
+}
+
+.priceWrap .actualPrice {
+    color: #000;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration:red line-through;
+}
 
 
 
+@media (min-width: 716px) {
+    .productCardWrap figure {
+        width: 100%;
+        height: 300px;
+    }
+
+}
 
 @media (min-width: 992px) {
 
-    .productCardWrap figure {
-        width: 230px;
+    /* .productCardWrap figure {
+        width: 100%;
+        height: 290px;
+        overflow: hidden;
+    } */
+
+
+
+    /* .productCardWrap figure {
+        width: 100%;
         height: 230px;
-    }
+    } */
 
     .productDetails .brandName {
         font-size: 17px;
@@ -87,6 +115,36 @@
         font-size: 20px;
 
     }
+
+    .priceWrap .currentPrice {
+        font-size: 15px;
+        padding-right: 15px;
+    }
+    
+    .priceWrap .actualPrice {
+        font-size: 14px;
+    }
+    .productBorder {
+        padding: 10px;
+    }
+
+    .productDetails .brandName {
+        font-size: 15px;
+        font-weight: 500;
+        color: #6b7b8b;
+    
+    }
+    
+    .productDetails .productName {
+        font-size: 18px;
+        font-weight: 600;
+        color: #000000;
+    }
+    .productDetails {
+        padding: 10px 20px;
+    
+    }
+
 }
 
 
@@ -97,3 +155,4 @@
     }
 
 }
+
