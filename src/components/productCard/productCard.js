@@ -11,6 +11,8 @@ const productCard = () => {
       Imgurl: "/images/Product/grosery-product-03-a.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 2,
@@ -19,6 +21,8 @@ const productCard = () => {
       Imgurl: "/images/Product/grosery-product-03.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 3,
@@ -27,6 +31,8 @@ const productCard = () => {
       Imgurl: "/images/Product/s20.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 4,
@@ -35,6 +41,8 @@ const productCard = () => {
       Imgurl: "/images/Product/s22.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 5,
@@ -43,6 +51,8 @@ const productCard = () => {
       Imgurl: "/images/Product/s23.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 6,
@@ -51,6 +61,8 @@ const productCard = () => {
       Imgurl: "/images/Product/grosery-product-03.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 7,
@@ -59,6 +71,8 @@ const productCard = () => {
       Imgurl: "/images/Product/grosery-product-03-a.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 8,
@@ -67,6 +81,8 @@ const productCard = () => {
       Imgurl: "/images/Product/grosery-product-03.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 9,
@@ -75,6 +91,8 @@ const productCard = () => {
       Imgurl: "/images/Product/s20.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 10,
@@ -83,6 +101,8 @@ const productCard = () => {
       Imgurl: "/images/Product/s22.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 11,
@@ -91,6 +111,8 @@ const productCard = () => {
       Imgurl: "/images/Product/s23.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
     {
       id: 12,
@@ -99,6 +121,8 @@ const productCard = () => {
       Imgurl: "/images/Product/grosery-product-03.jpg",
       altText: "Offer Image",
       link: "###",
+      productCurrentPrice: '99,999',
+      productActualPrice: '89,999',
     },
   ];
 

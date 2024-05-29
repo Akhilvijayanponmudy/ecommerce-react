@@ -14,7 +14,7 @@ const HomeOfferListing = () => {
 
 
     const swiperOptions = {
-        spaceBetween: 0,
+        spaceBetween: 25,
         slidesPerView: 1,
         autoplay: true,
         loop: true,
