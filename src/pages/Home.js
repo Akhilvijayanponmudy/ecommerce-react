@@ -1,35 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import Header from "../utlis/header";
-import axios from 'axios';
-import baseURL from '../api/apiConfig';
-import HomeBanner from "../components/homeBanner/Banner";
-import HomeCategories from "../components/homeCategories/HomeCategories";
-import LatestProducts from "../components/homeLatestProducts/latestProducts";
+import React from 'react';
+import HeaderLatest from "../utlis/headerLatest";
+import HomehotDealBanner from "../components/homeHotDeal/homeHotDeal";
+import HomeOfferListing from '../components/homeOfferListing/homeOfferListing';
+import ProductCard from '../components/productCard/productCard';
+import Categories from '../components/categories/categoriesComponent';
+import OfferCards from '../components/offerCards/offerCards'
+import TodaysDeals from '../components/todaysDeals/todaysDeals'
 
 function Home() {
-  const [data] = useState(null);
-  const [categories, setCategories] = useState([]); 
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    
-    if (!data) {
-      axios.get(baseURL).then(response => {
-          setCategories(response.data.categoryArr);
-          setProducts(response.data.productArr);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    }
-  }, [data]); 
-
   return (
     <div>
-      <Header />
-      <HomeBanner />
-      <HomeCategories props={categories} />
-      <LatestProducts props={products} />
+      <HeaderLatest />
+      <HomehotDealBanner />
+      <HomeOfferListing />
+      <Categories />
+      <OfferCards />
+      <ProductCard count={2} catId={''} />
+      <TodaysDeals />
     </div>
   );
 }

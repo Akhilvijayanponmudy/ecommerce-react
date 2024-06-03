@@ -192,7 +192,7 @@ section.homeOfferListing .offerImgs .imgWrap figure {
 }
 
 .imgWrap:hover img {
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 
@@ -204,7 +204,7 @@ section.homeOfferListing .offerImgs .imgWrap figure {
 }
 
 .offerWrap figure:hover img {
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 
