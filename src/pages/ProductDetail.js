@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from "../utlis/header";
+import Header from "../utlis/headerLatest";
 import ProductDetail from "../components/ProductDetails/ProductDetails"
 import { useParams } from 'react-router-dom';
 import baseURL from '../api/apiConfig';

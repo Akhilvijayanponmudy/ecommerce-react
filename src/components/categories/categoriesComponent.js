@@ -9,63 +9,7 @@ const baseURL = process.env.REACT_APP_API_URL;
 
 const CategoriesComponent = () => {
 
-    const categoryArr = [
-        {
-            id: 1,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-        {
-            id: 2,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-        {
-            id: 3,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-        {
-            id: 4,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-        {
-            id: 5,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-        {
-            id: 6,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-        {
-            id: 7,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-        {
-            id: 8,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-        {
-            id: 9,
-            title: 'Category',
-            imgUrl: '/images/home/catIcon.svg',
-
-        },
-
-    ];
+   
 
     const apiUrl = baseURL + 'product-categories';
     const [categoryArray, setcategoryArray] = useState([]);
@@ -100,7 +44,7 @@ const CategoriesComponent = () => {
 
                     <div className={styles.iconWrap}>
                         {categoryArray.map((category) => (
-                            <Link to={`category-products/${category.id}`} className={styles.catLink}>
+                            <Link to={`category/${category.id}`} className={styles.catLink}>
                                 <div className={styles.iconFullWrap}>
 
                                     <figure><img src={category.categoryImg} alt="" /></figure>

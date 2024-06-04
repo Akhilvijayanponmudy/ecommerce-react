@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../utlis/header";
+import Header from "../utlis/headerLatest";
 import Cart from "../components/cart/cartComponent";
 
 function CartPage() {

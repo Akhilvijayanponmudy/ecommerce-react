@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from 'react';
 import React from 'react';
-import Header from "../utlis/header";
+import Header from "../utlis/headerLatest";
 import UserAccount from "../components/account/accountComponent"
 import Tabs from "../components/account/tabs"
 import { Container, Row, Col } from "react-bootstrap";

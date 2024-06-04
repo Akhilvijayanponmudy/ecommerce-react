@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductsList from "../components/productsList/productsList";
 import baseURL from '../api/apiConfig';
-import Header from '../utlis/header';
+import Header from "../utlis/headerLatest";
 
 function Products() {
     const [products, setProducts] = useState([]); 

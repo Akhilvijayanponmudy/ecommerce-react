@@ -13,6 +13,7 @@ import Test from "../pages/test";
 import Account from "../pages/Account"
 import Payment from "../pages/Payment"
 import ProductsCat from "../pages/CategoryProducts"
+import CatProducts from "../pages/CategoryProducts"
 import NewHome from "../pages/NewHome"
 // import LoginRequired from "../components/loginRequired/loginRequired";
 
@@ -24,6 +25,7 @@ function AppRouter() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<ProductsCat />} />
                 <Route path="/detail/:id" element={<ProductDetails />} />
+                <Route path="/category/:id" element={<CatProducts />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<UserLogin />} />
                 <Route path="/registration" element={<UserRegistration />} />
@@ -35,7 +37,7 @@ function AppRouter() {
 
 
 
-                <Route path="/home" element={<NewHome />} />
+                {/* <Route path="/home" element={<NewHome />} /> */}
                 {/* <Route path="/cart/:id" element={<LoginRequired ><CartPage /></LoginRequired>} /> */}
 
 
