@@ -18,8 +18,6 @@ function ProductDetails() {
                     throw new Error('Failed to fetch product');
                 }
                 const productData = await response.json();
-                // console.log(productData);
-                // const productArray = productData[0];
                 setProduct(productData);
 
 
@@ -29,9 +27,7 @@ function ProductDetails() {
         }
 
         fetchProduct();
-        // Clean up function for useEffect
         return () => {
-            // Any cleanup code here (if needed)
         };
     }, [id]);
     return (

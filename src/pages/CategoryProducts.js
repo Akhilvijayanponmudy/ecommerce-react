@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "../utlis/headerLatest";
-import ProductCard from '../components/productCard/productCard'
+import ProductListOnCategories from '../components/productListOnCategories/productListOnCategories'
 import { useParams } from 'react-router-dom'; 
 
 
@@ -10,7 +10,7 @@ function CatProducts() {
     return (
         <div>
             <Header />
-            <ProductCard count={2} catId={id} />
+            <ProductListOnCategories  catId={id} />
         </div>
     );
 }

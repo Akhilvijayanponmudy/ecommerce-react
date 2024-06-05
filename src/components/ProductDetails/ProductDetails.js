@@ -17,13 +17,10 @@ const ProductDetail = ({ props }) => {
   }
 
   const productDetailsArray = Object.entries(props);
-
-  // Check if props.categoryArr  an array before using map
   if (!Array.isArray(productDetailsArray)) {
     console.error("Invalid Product in props:", props);
     return null;
   }
-
 
   const productId = productDetailsArray[0][1]._id;
   const productName = productDetailsArray[0][1].productName;
@@ -71,16 +68,7 @@ const ProductDetail = ({ props }) => {
     }
   };
 
-  // const productBuy = async () => {
-  //   // if (productId) {
-  //   //   try {
-  //   //     const res
 
-  //   //   } catch (error) {
-  //   //     console.log(error);
-  //   //   }
-  //   // }
-  // }
 
 
   return (
@@ -89,15 +77,12 @@ const ProductDetail = ({ props }) => {
         <Row className={Style.rowStyle}>
           <Col xs={12} lg={6} >
             <figure className={Style.PrimaryImage}>
-              <img src={currentImage || primaryImage} alt="" /> {/* Use currentImage if available, fallback to primaryImage */}
+              <img src={currentImage || baseURL + 'uploads/' + secondaryImages[0]} alt="" /> 
             </figure>
+
+
             <div className={Style.productImageGroupWrap}>
-              {/* Conditionally render the primary image first */}
-              {secondaryImages.length > 0 && primaryImageUr !== "" && (
-                <figure key="primary" className={Style.secondaryImages}>
-                  <img src={primaryImage} alt="" />
-                </figure>
-              )}
+
               {secondaryImages.map((imageUrl, index) => (
                 <figure key={index} className={Style.secondaryImages}>
                   <img
