@@ -33,8 +33,8 @@ function ProductDetails() {
     return (
         <div>
             <Header />
-            <ProductDetail props={product}/>
-            
+            <ProductDetail props={product} />
+
         </div>
     )
 }

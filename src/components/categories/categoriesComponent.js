@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 const baseURL = process.env.REACT_APP_API_URL;
 
-
-
 const CategoriesComponent = () => {
-
-   
 
     const apiUrl = baseURL + 'product-categories';
     const [categoryArray, setcategoryArray] = useState([]);

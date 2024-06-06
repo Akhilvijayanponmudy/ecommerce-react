@@ -88,6 +88,8 @@ header .topHeader .siteLogo img {
 header .topHeader .numberSec {
     display: flex;
     position: relative;
+    min-height: 40px;
+    align-items: center;
 }
 
 header .topHeader .headerConatctWrap {
