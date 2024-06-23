@@ -2,12 +2,35 @@ import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faHeart, faSignIn, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import styles from './headerLatest.module.css'; // Import styles
+import styles from './headerLatest.module.css';
+import { Link } from 'react-router-dom';
 
 function HeaderLatest() {
 
     const [isActiveMenu, setIsActiveMenu] = useState(false);
     const [isActiveMobMenu, setIsActivemobMenu] = useState(false);
+
+
+    // const apiUrl = baseURL + 'product-categories';
+    // const [categoryArray, setcategoryArray] = useState([]);
+    // const [isLoading, setIsLoading] = useState(false);
+    // const [error, setError] = useState(false);
+
+    // useEffect(() => {
+    //     setIsLoading(true);
+    //     axios.get(apiUrl)
+    //         .then(response => {
+    //             setcategoryArray(response.data.categoryArr);
+    //             setIsLoading(false);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching data:', error);
+    //             setError(true);
+    //             setIsLoading(false);
+    //         });
+    // }, [apiUrl]);
+
+
 
     const toggleMenu = () => {
         setIsActiveMenu(!isActiveMenu);
@@ -24,9 +47,10 @@ function HeaderLatest() {
                 <Container>
                     <Row>
                         <Col xs={2} >
-                            <figure className={`${styles.siteLogo} mb-0`}>
+                            <Link to="/"> <figure className={`${styles.siteLogo} mb-0`}>
                                 <img src="/images/header/logo.svg" alt="" />
-                            </figure>
+                            </figure></Link>
+
                         </Col>
                         <Col xs={4} >
                             <div className={styles.searchBar}>
@@ -43,27 +67,15 @@ function HeaderLatest() {
 
                                     <a href="#" className={styles.numLinkWrap}>
                                         <span className={styles.cardTitle}>Need Help</span>
-                                        <span className={styles.secVal} >999 999 999</span>
                                     </a>
                                 </div>
 
-                                <div className={styles.headerContact}>
-                                    <div className={styles.numberSec}>
-                                        <i className="fa fa-heart-o" aria-hidden="true"></i>
-                                        <i> <FontAwesomeIcon icon={faHeart} className={styles.icon} /></i>
 
-                                        <a href="#" className={styles.numLinkWrap}>
-                                            <span className={styles.cardTitle} >Product</span>
-                                            <span className={styles.secVal}>Wishlist</span>
-                                        </a>
-                                    </div>
-                                </div>
                                 <div className={styles.headerContact}>
                                     <div className={styles.numberSec}>
                                         <i> <FontAwesomeIcon icon={faSignIn} className={styles.icon} /></i>
 
                                         <a href="#" className={styles.numLinkWrap} >
-                                            <span className={styles.cardTitle}>Login</span>
                                             <span className={styles.secVal}>Account</span>
                                         </a>
                                     </div>
@@ -72,10 +84,10 @@ function HeaderLatest() {
                                     <div className={styles.numberSec}>
                                         <i> <FontAwesomeIcon icon={faShoppingCart} className={styles.icon} /></i>
 
-                                        <a href="#" className={styles.numLinkWrap}>
+                                        <Link to="/cart" className={styles.numLinkWrap}>
                                             <span className={styles.cardTitle}>Cart</span>
-                                            <span className={styles.secVal}>Rs.0.00</span>
-                                        </a>
+                                        </Link>
+
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +115,7 @@ function HeaderLatest() {
                                     <div className={`${styles.dropMenus} headerTitlesF`} >
 
 
-                                        <ul className={styles.dropdownListWrap}> 
+                                        <ul className={styles.dropdownListWrap}>
                                             <li><a href="">
                                                 <figure><img src="/images/header/demo-grocery-categories-menu-icon-01.png" alt="" />
                                                 </figure> Fruits & Vegitables
@@ -166,14 +178,16 @@ function HeaderLatest() {
                             <figure className={`${styles.mobLogo} `} id="mobMenuButton" onClick={toggleMbMenu}><img src="/images/header/menu.svg" alt="" /></figure>
                         </Col>
                         <Col xs={5} >
-
-                            <figure className={`${styles.siteLogo} `} ><img src="/images/header/logo.svg" alt="" /></figure>
+                            <Link to="/">
+                                <figure className={`${styles.siteLogo} `} ><img src="/images/header/logo.svg" alt="" /></figure>
+                            </Link>
                         </Col>
                         <Col xs={4} >
 
                             <div className={`${styles.iconGroup} `} >
-                                <i> <FontAwesomeIcon icon={faShoppingCart} className={styles.icon} /></i>
-                                <i> <FontAwesomeIcon icon={faSignIn} className={styles.icon} /></i>
+                                <Link to="/cart" ><i> <FontAwesomeIcon icon={faShoppingCart} className={styles.icon} /></i></Link>
+                                <Link><i> <FontAwesomeIcon icon={faSignIn} className={styles.icon} /></i></Link>
+
 
                             </div>
                         </Col>

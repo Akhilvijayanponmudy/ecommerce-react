@@ -12,7 +12,6 @@ const Cart = () => {
 
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]); // State to hold cart items (with quantity)
-
     const fetchCartData = useCallback(async () => {
         try {
             const accessToken = getJWTtoken();
@@ -31,7 +30,10 @@ const Cart = () => {
             if (validation === false) {
                 navigate('/login');
             } else if (validation === true) {
-                setCartItems(response.data);
+
+
+
+                setCartItems(response.data.cartArr);
 
             } else {
                 navigate('/login');
@@ -139,10 +141,6 @@ const Cart = () => {
         return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
     };
 
-    // const cartBuy = () => {
-    //     console.log('buttton');
-    // }
-
 
     return (
         <section className={Style.cartSection}>
@@ -164,7 +162,7 @@ const Cart = () => {
                                 cartItems.map(item => (
                                     <tr key={item.id}>
                                         <td>
-                                            <figure><img src={`${baseURL}uploads/${item.img}`} alt={item.name} /></figure>
+                                            <figure><img src={item.img} alt={item.name} /></figure>
                                         </td>
                                         <td>
                                             <span className={Style.produtName}>{item.name}</span>
@@ -195,6 +193,9 @@ const Cart = () => {
                         </tbody>
                     </table>
                 </Row>
+
+
+
                 <Row>
                     <div className={Style.priceSection}>
                         Total Price: Rs. {getTotalPrice()}
@@ -204,6 +205,7 @@ const Cart = () => {
                         </div>
                     </div>
                 </Row>
+
             </Container>
         </section>
 

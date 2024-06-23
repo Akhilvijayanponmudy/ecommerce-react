@@ -6,21 +6,10 @@ import axios from 'axios';
 const baseURL = process.env.REACT_APP_API_URL;
 
 
-const ProductCard = ({ count, catId }) => {
+const ProductCard = () => {
 
 
-  console.log(count);
-  console.log(catId);
-
-
-  let apiUrl = '';
-  if (catId) {
-    apiUrl = baseURL + `products/category/${catId}`;
-
-  } else {
-    apiUrl = baseURL + 'latest-products';
-  }
-
+  const apiUrl = baseURL + 'latest-products';
   const [productArray, setProductArray] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
